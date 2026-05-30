@@ -30,4 +30,4 @@ Personal portfolio website showcasing AI/ML projects, workflow automation system
 
 * LinkedIn: https://www.linkedin.com/in/ayush-bambhroliya-4045171b8/
 * GitHub: https://github.com/abambhroliya007
-* Email: [abambhroliya@csus.edu](mailto:abambhroliya@csus.edu)
+* Email: [ayush.bambhroliya007@gmail.com](mailto:ayush.bambhroliya007@gmail.com)
