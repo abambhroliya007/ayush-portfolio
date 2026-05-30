@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ dark: localStorage.getItem('theme')==='dark', scrolled:false, mobileMenu:false }" :class="{'dark':dark}" x-init="window.addEventListener('scroll',()=>scrolled=window.scrollY>20,{passive:true})" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resume-Meets-Job — Ayush Bambhroliya</title>
+  <meta name="description" content="Resume-Meets-Job is an AI-powered resume and job-fit analysis tool built with Python, Streamlit, OpenAI API, and prompt engineering."/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{display:['PT Sans','sans-serif'],body:['DM Sans','sans-serif']},colors:{accent:'#FF6B2B','accent-light':'#FF8F5C'}}}}
+  </script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box}
+    html{font-family:'DM Sans',sans-serif}
+    h1,h2,h3,h4,h5,h6{font-family:'PT Sans',sans-serif}
+    .nav-link{position:relative}
+    .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:currentColor;transition:width .25s}
+    .nav-link:hover::after{width:100%}
+    .photo-frame{overflow:hidden;background:#e4e4e7}
+    .photo-frame img{width:100%;height:100%;object-fit:cover;display:block}
+    [x-cloak]{display:none!important}
+  </style>
+</head>
+
+<body class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-body antialiased">
+
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+  :class="scrolled?'bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md shadow-sm shadow-black/5':'bg-transparent'">
+  <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="index.html" class="font-display font-bold text-xl tracking-tight z-10">
+      <span class="text-zinc-900 dark:text-white">ayu</span><span class="text-accent">sh</span>
+    </a>
+
+    <ul class="hidden md:flex items-center gap-8 text-sm font-medium">
+      <li><a href="index.html#services" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white">Skills</a></li>
+      <li><a href="projects.html" class="nav-link text-accent font-medium">Work</a></li>
+      <li><a href="index.html#about" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white">About</a></li>
+      <li><a href="index.html#contact" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white">Contact</a></li>
+    </ul>
+
+    <div class="flex items-center gap-3">
+      <button @click="dark=!dark;localStorage.setItem('theme',dark?'dark':'light')" class="w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800">
+        <span x-show="!dark">☾</span>
+        <span x-show="dark">☀</span>
+      </button>
+      <a href="index.html#contact" class="hidden md:inline-flex bg-accent text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-accent-light">Contact me →</a>
+      <button @click="mobileMenu=!mobileMenu" class="md:hidden w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800">☰</button>
+    </div>
+  </nav>
+
+  <div x-show="mobileMenu" x-cloak class="md:hidden bg-white dark:bg-zinc-950 border-t border-zinc-100 dark:border-zinc-900">
+    <ul class="flex flex-col px-6 py-4 gap-4 text-sm font-medium">
+      <li><a href="index.html#services" @click="mobileMenu=false">Skills</a></li>
+      <li><a href="projects.html" @click="mobileMenu=false" class="text-accent">Work</a></li>
+      <li><a href="index.html#about" @click="mobileMenu=false">About</a></li>
+      <li><a href="index.html#contact" @click="mobileMenu=false">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <article>
+    <header class="pt-32 pb-10 max-w-4xl mx-auto px-6">
+      <a href="projects.html" class="inline-flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400 hover:text-accent mb-8">
+        ← Back to projects
+      </a>
+
+      <div class="flex flex-wrap gap-2 mb-6">
+        <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">AI Apps</span>
+        <span class="text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-3 py-1 rounded-full">Python</span>
+        <span class="text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-3 py-1 rounded-full">Streamlit</span>
+        <span class="text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-3 py-1 rounded-full">OpenAI API</span>
+        <span class="text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-3 py-1 rounded-full">Prompt Engineering</span>
+      </div>
+
+      <h1 class="font-display font-bold text-4xl md:text-6xl text-zinc-900 dark:text-white leading-tight mb-6">
+        Resume-Meets-Job
+      </h1>
+
+      <p class="text-xl text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-3xl mb-8">
+        An AI-powered career assistant that compares resumes against job descriptions, calculates job-fit scores, identifies missing skills, and generates personalized recommendations, interview questions, and learning plans.
+      </p>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="https://abambhroliya007-resume-meets-job-app-58ufpd.streamlit.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-accent text-white px-6 py-3 rounded-full hover:bg-accent-light transition-colors font-medium">
+          🚀 Live Demo
+        </a>
+        <a href="projects.html" class="inline-flex items-center gap-2 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-6 py-3 rounded-full hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors font-medium">
+          View All Projects
+        </a>
+      </div>
+    </header>
+
+    <section class="max-w-6xl mx-auto px-6 mb-16">
+      <div class="photo-frame w-full h-72 md:h-[460px] rounded-3xl">
+        <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=1400&q=80" alt="Resume-Meets-Job project preview" loading="eager"/>
+      </div>
+    </section>
+
+    <section class="max-w-4xl mx-auto px-6 pb-20">
+      <div class="grid md:grid-cols-3 gap-5 mb-14">
+        <div class="bg-zinc-50 dark:bg-zinc-900 rounded-2xl p-6 border border-zinc-100 dark:border-zinc-800">
+          <p class="text-xs text-zinc-400 uppercase tracking-widest mb-2">Role</p>
+          <p class="font-medium">AI App Developer</p>
+        </div>
+        <div class="bg-zinc-50 dark:bg-zinc-900 rounded-2xl p-6 border border-zinc-100 dark:border-zinc-800">
+          <p class="text-xs text-zinc-400 uppercase tracking-widest mb-2">Type</p>
+          <p class="font-medium">Career AI Tool</p>
+        </div>
+        <div class="bg-zinc-50 dark:bg-zinc-900 rounded-2xl p-6 border border-zinc-100 dark:border-zinc-800">
+          <p class="text-xs text-zinc-400 uppercase tracking-widest mb-2">Status</p>
+          <p class="font-medium">Live Demo Available</p>
+        </div>
+      </div>
+
+      <div class="space-y-12">
+        <section>
+          <h2 class="font-display font-bold text-3xl mb-4">Overview</h2>
+          <p class="text-zinc-500 dark:text-zinc-400 leading-relaxed">
+            Resume-Meets-Job was built to help job seekers understand how well their resume matches a target job description. The app acts like an AI career coach by reviewing resume content, comparing it with job requirements, and producing structured feedback that users can act on.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display font-bold text-3xl mb-4">Key Features</h2>
+          <ul class="space-y-3 text-zinc-500 dark:text-zinc-400 leading-relaxed">
+            <li>• Resume-to-job-description fit analysis</li>
+            <li>• Job-fit score generation</li>
+            <li>• Skill gap identification</li>
+            <li>• Tailored resume improvement recommendations</li>
+            <li>• Custom interview questions based on the job description</li>
+            <li>• Personalized learning plan for missing skills</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="font-display font-bold text-3xl mb-4">Tech Stack</h2>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-sm bg-zinc-100 dark:bg-zinc-800 px-4 py-2 rounded-full">Python</span>
+            <span class="text-sm bg-zinc-100 dark:bg-zinc-800 px-4 py-2 rounded-full">Streamlit</span>
+            <span class="text-sm bg-zinc-100 dark:bg-zinc-800 px-4 py-2 rounded-full">OpenAI API</span>
+            <span class="text-sm bg-zinc-100 dark:bg-zinc-800 px-4 py-2 rounded-full">Prompt Engineering</span>
+            <span class="text-sm bg-zinc-100 dark:bg-zinc-800 px-4 py-2 rounded-full">LLM Workflows</span>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="font-display font-bold text-3xl mb-4">What I Built</h2>
+          <p class="text-zinc-500 dark:text-zinc-400 leading-relaxed">
+            I designed the end-to-end application flow, built the Streamlit interface, created structured prompts for resume and job analysis, and connected the system to AI-generated outputs. The project focuses on making resume feedback practical, specific, and easy to understand.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="font-display font-bold text-3xl mb-4">Impact</h2>
+          <p class="text-zinc-500 dark:text-zinc-400 leading-relaxed">
+            This project shows my ability to build deployed AI tools that combine user input, LLM reasoning, structured output generation, and a clean user interface. It also demonstrates practical use of AI for career preparation and workflow automation.
+          </p>
+        </section>
+      </div>
+    </section>
+  </article>
+</main>
+
+<footer class="border-t border-zinc-100 dark:border-zinc-900">
+  <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-sm text-zinc-400">&copy; <span id="year"></span> Ayush Bambhroliya. All rights reserved.</p>
+    <p class="text-xs text-zinc-500">Built with Tailwind CSS &amp; Alpine.js</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
