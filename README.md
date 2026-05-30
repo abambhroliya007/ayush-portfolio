@@ -1,25 +1,31 @@
-# Folio— Freelance Portfolio Template (HTML · Tailwind · Alpine.js)
-#### Preview
+# Ayush Bambhroliya Portfolio
 
- - [Demo](https://themewagon.github.io/folio-html/)
+Personal portfolio website showcasing AI/ML projects, workflow automation systems, LLM applications, and software engineering work.
 
-#### Download
- - [Download from ThemeWagon](https://themewagon.com/themes/folio-html/)
+## Featured Projects
 
-## Getting Started
+* ApplyBuddy-AI
+* Resume-Meets-Job
+* Multi-Agent AI Task Runner
+* AI Workflow Automation System
+* Golf Swing Analyzer
+* ML Stock Analysis Assistant
 
-1. Clone Repository
-```
-git clone https://github.com/themewagon/folio-html.git
-```
+## Technologies
 
-## Author 
-```
-Design and code is completely written by Laurent Begey and development team. 
-```
+* Python
+* OpenAI API
+* Streamlit
+* FastAPI
+* JavaScript
+* React
+* Pandas
+* NumPy
+* Scikit-learn
+* Git/GitHub
 
-## License
+## Contact
 
- - Design and Code is Copyright &copy; <a href="https://lbegey78.gumroad.com/" target="_blank">Laurent Begey</a>
- - Licensed cover under [MIT]
- - Distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+* LinkedIn: https://www.linkedin.com/in/ayush-bambhroliya-4045171b8/
+* GitHub: https://github.com/abambhroliya007
+* Email: [abambhroliya@csus.edu](mailto:abambhroliya@csus.edu)
