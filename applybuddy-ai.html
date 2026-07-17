@@ -1,184 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" x-data="{ dark: localStorage.getItem('theme')==='dark', scrolled:false, mobileMenu:false }" :class="{'dark':dark}" x-init="window.addEventListener('scroll',()=>scrolled=window.scrollY>20,{passive:true})" class="scroll-smooth">
+<html lang="en" x-data="page()" :class="{dark:'dark'}">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ApplyBuddy-AI — Ayush Bambhroliya</title>
-  <meta name="description" content="ApplyBuddy-AI is an AI-powered job application assistant that generates tailored resumes, cover letters, recruiter emails, LinkedIn messages, and interview prep materials."/>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <script>
-    tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{display:['PT Sans','sans-serif'],body:['DM Sans','sans-serif']},colors:{accent:'#FF6B2B','accent-light':'#FF8F5C'}}}}
-  </script>
-  <style>
-    *,*::before,*::after{box-sizing:border-box}
-    html{font-family:'DM Sans',sans-serif}
-    h1,h2,h3,h4,h5,h6{font-family:'PT Sans',sans-serif}
-    body{transition:background-color .3s,color .3s}
-    .nav-link{position:relative}
-    .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:currentColor;transition:width .25s}
-    .nav-link:hover::after{width:100%}
-    .btn-primary{position:relative;overflow:hidden}
-    .photo-frame{overflow:hidden;background:#e4e4e7}
-    .photo-frame img{width:100%;height:100%;object-fit:cover;display:block}
-    [x-cloak]{display:none!important}
-  </style>
-</head>
-
-<body class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-body antialiased">
-
-<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-  :class="scrolled?'bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md shadow-sm shadow-black/5':'bg-transparent'">
-  <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="index.html" class="font-display font-bold text-xl tracking-tight z-10">
-      <span class="text-zinc-900 dark:text-white">ayu</span><span class="text-accent">sh</span>
-    </a>
-
-    <ul class="hidden md:flex items-center gap-8 text-sm font-medium">
-      <li><a href="index.html#services" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white">Services</a></li>
-      <li><a href="projects.html" class="nav-link text-accent font-medium">Work</a></li>
-      <li><a href="index.html#about" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white">About</a></li>
-      <li><a href="blog.html" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white">Blog</a></li>
-      <li><a href="index.html#contact" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white">Contact</a></li>
-    </ul>
-
-    <div class="flex items-center gap-3">
-      <button @click="dark=!dark;localStorage.setItem('theme',dark?'dark':'light')" class="w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800">
-        <span x-show="!dark">☾</span>
-        <span x-show="dark">☀</span>
-      </button>
-      <a href="index.html#contact" class="hidden md:inline-flex bg-accent text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-accent-light">Hire me →</a>
-      <button @click="mobileMenu=!mobileMenu" class="md:hidden w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800">☰</button>
-    </div>
-  </nav>
-
-  <div x-show="mobileMenu" x-cloak class="md:hidden bg-white dark:bg-zinc-950 border-t border-zinc-100 dark:border-zinc-900">
-    <ul class="flex flex-col px-6 py-4 gap-4 text-sm font-medium">
-      <li><a href="index.html#services" @click="mobileMenu=false">Services</a></li>
-      <li><a href="projects.html" @click="mobileMenu=false" class="text-accent">Work</a></li>
-      <li><a href="index.html#about" @click="mobileMenu=false">About</a></li>
-      <li><a href="blog.html" @click="mobileMenu=false">Blog</a></li>
-      <li><a href="index.html#contact" @click="mobileMenu=false">Contact</a></li>
-    </ul>
-  </div>
-</header>
-
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An AI-powered job application assistant that transforms a resume and job description into tailored application materials, outreach messages, and interview preparation."><title>ApplyBuddy-AI — Ayush Bambhroliya</title>
+<script src="https://cdn.tailwindcss.com"></script><script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#f4efe3;--paper:#fffdf7;--green:#173f35;--green2:#245b4b;--gold:#b89452;--ink:#1f2a26;--muted:#68736d;--line:#d9d1bf}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"DM Sans",sans-serif;background:var(--cream);color:var(--ink);transition:.3s}body.dark{--cream:#0f1815;--paper:#16231f;--green:#d7e6df;--green2:#b9d5c8;--gold:#d0ad69;--ink:#edf4ef;--muted:#a9b8b1;--line:#31453d}.noise{position:fixed;inset:0;pointer-events:none;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");z-index:100}h1,h2,h3{font-family:"Cormorant Garamond",serif}a{color:inherit}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}.nav{position:fixed;top:14px;left:0;right:0;z-index:50}.navin{height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;border:1px solid color-mix(in srgb,var(--line) 80%,transparent);background:color-mix(in srgb,var(--paper) 80%,transparent);backdrop-filter:blur(18px);border-radius:999px;box-shadow:0 12px 35px rgba(25,45,38,.08)}.brand{text-decoration:none;font-family:"Cormorant Garamond";font-size:28px;font-weight:700;color:var(--green)}.links{display:flex;gap:24px;align-items:center;font-size:14px}.links a{text-decoration:none;color:var(--muted)}.links a:hover{color:var(--green)}.iconbtn{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--green);cursor:pointer}.hero{padding:150px 0 64px;position:relative;overflow:hidden}.hero:before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,var(--gold) 0%,transparent 66%);opacity:.13;right:-160px;top:20px}.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700}.hero h1{font-size:clamp(52px,8vw,92px);line-height:.92;margin:20px 0;color:var(--green);max-width:900px}.lead{font-size:20px;line-height:1.75;color:var(--muted);max-width:800px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 21px;border-radius:999px;text-decoration:none;font-size:14px;font-weight:700;border:1px solid var(--green)}.primary{background:var(--green);color:var(--paper)}.secondary{background:transparent;color:var(--green)}.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:48px}.meta>div,.card{background:color-mix(in srgb,var(--paper) 90%,transparent);border:1px solid var(--line);border-radius:22px;padding:22px}.meta small{display:block;color:var(--gold);text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px}.shot{margin:0 auto 64px}.frame{background:var(--paper);border:1px solid var(--line);border-radius:30px;padding:12px;box-shadow:0 28px 70px rgba(28,53,44,.13)}.frame img{display:block;width:100%;height:clamp(280px,55vw,620px);object-fit:cover;object-position:top;border-radius:20px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:0 auto 86px}.stat strong{font-family:"Cormorant Garamond";font-size:38px;color:var(--green)}.stat span{display:block;color:var(--muted);font-size:13px;margin-top:5px}.section{padding:0 0 88px}.section h2{font-size:48px;color:var(--green);margin:0 0 20px}.section p{font-size:17px;line-height:1.85;color:var(--muted)}.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}.list{padding:0;margin:0;list-style:none}.list li{padding:13px 0;border-bottom:1px solid var(--line);color:var(--muted)}.list li:before{content:"✦";color:var(--gold);margin-right:10px}.steps{counter-reset:s}.step{display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:start;padding:18px 0;border-bottom:1px solid var(--line)}.step:before{counter-increment:s;content:counter(s);width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--green);color:var(--paper);font-weight:700}.step h3{font-size:25px;margin:0 0 6px;color:var(--green)}.step p{margin:0;font-size:15px}.chips{display:flex;gap:9px;flex-wrap:wrap}.chip{padding:9px 13px;border-radius:999px;background:var(--paper);border:1px solid var(--line);font-size:13px;color:var(--green)}.cta{padding:54px;border-radius:32px;background:var(--green);color:var(--paper);text-align:center;margin-bottom:80px}.cta h2{color:var(--paper);font-size:48px;margin:0 0 12px}.cta p{color:color-mix(in srgb,var(--paper) 72%,transparent);max-width:620px;margin:0 auto 26px}.cta .btn{border-color:var(--gold);background:var(--gold);color:#18231f}.footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:13px}.foot{display:flex;justify-content:space-between;gap:15px}.reveal{opacity:0;transform:translateY(18px);transition:.6s}.reveal.in{opacity:1;transform:none}@media(max-width:760px){.links a:not(.keep){display:none}.hero{padding-top:125px}.meta,.stats,.two{grid-template-columns:1fr}.hero h1{font-size:56px}.section h2,.cta h2{font-size:38px}.frame img{height:330px}.cta{padding:38px 22px}.foot{flex-direction:column}.wrap{width:min(100% - 28px,1120px)}}
+</style>
+</head><body><div class="noise"></div>
+<header class="nav"><div class="wrap navin"><a class="brand" href="index.html">ayush</a><nav class="links"><a href="index.html#services">Skills</a><a class="keep" href="projects.html">Projects</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a><button class="iconbtn" @click="toggle()" aria-label="Toggle theme"><span x-text="dark?'☀':'☾'"></span></button></nav></div></header>
 <main>
-  <article>
-    <header class="pt-32 pb-10 max-w-4xl mx-auto px-6">
-      <a href="projects.html" class="inline-flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400 hover:text-accent mb-8">
-        ← Back to projects
-      </a>
-
-      <div class="flex flex-wrap gap-2 mb-6">
-        <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">AI Apps</span>
-        <span class="text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-3 py-1 rounded-full">Python</span>
-        <span class="text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-3 py-1 rounded-full">Streamlit</span>
-        <span class="text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-3 py-1 rounded-full">OpenAI API</span>
-        <span class="text-xs bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-3 py-1 rounded-full">PyPDF</span>
-      </div>
-
-      <h1 class="font-display font-bold text-4xl md:text-6xl text-zinc-900 dark:text-white leading-tight mb-6">
-        ApplyBuddy-AI
-      </h1>
-
-      <p class="text-xl text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-3xl mb-8">
-        An AI-powered job application assistant that helps users generate tailored resumes, cover letters, recruiter emails, LinkedIn outreach messages, and interview preparation materials from a resume and job description.
-      </p>
-
-      <div class="flex flex-wrap gap-4">
-        <a href="https://applybuddy-ai-ajvybt6ddrjht5mkn5mtrz.streamlit.app/#apply-buddy-ai" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-accent text-white px-6 py-3 rounded-full hover:bg-accent-light transition-colors font-medium">
-          🚀 Live Demo
-        </a>
-        <a href="projects.html" class="inline-flex items-center gap-2 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 px-6 py-3 rounded-full hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors font-medium">
-          View All Projects
-        </a>
-      </div>
-    </header>
-
-    <section class="max-w-6xl mx-auto px-6 mb-16">
-      <div class="photo-frame w-full h-72 md:h-[460px] rounded-3xl">
-        <img src="applybuddy-ai-screenshot.png" alt="ApplyBuddy-AI project preview" loading="eager"/>
-      </div>
-    </section>
-
-    <section class="max-w-4xl mx-auto px-6 pb-20">
-      <div class="grid md:grid-cols-3 gap-5 mb-14">
-        <div class="bg-zinc-50 dark:bg-zinc-900 rounded-2xl p-6 border border-zinc-100 dark:border-zinc-800">
-          <p class="text-xs text-zinc-400 uppercase tracking-widest mb-2">Role</p>
-          <p class="font-medium">AI App Developer</p>
-        </div>
-        <div class="bg-zinc-50 dark:bg-zinc-900 rounded-2xl p-6 border border-zinc-100 dark:border-zinc-800">
-          <p class="text-xs text-zinc-400 uppercase tracking-widest mb-2">Type</p>
-          <p class="font-medium">LLM Career Tool</p>
-        </div>
-        <div class="bg-zinc-50 dark:bg-zinc-900 rounded-2xl p-6 border border-zinc-100 dark:border-zinc-800">
-          <p class="text-xs text-zinc-400 uppercase tracking-widest mb-2">Status</p>
-          <p class="font-medium">Live Demo Available</p>
-        </div>
-      </div>
-
-      <div class="space-y-12">
-        <section>
-          <h2 class="font-display font-bold text-3xl mb-4">Overview</h2>
-          <p class="text-zinc-500 dark:text-zinc-400 leading-relaxed">
-            ApplyBuddy-AI was built to reduce the time and effort required to prepare job application materials. Instead of manually rewriting resumes, cover letters, recruiter emails, and interview notes for every role, users can upload or paste their resume and job description, then generate personalized outputs using AI.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="font-display font-bold text-3xl mb-4">Key Features</h2>
-          <ul class="space-y-3 text-zinc-500 dark:text-zinc-400 leading-relaxed">
-            <li>• Tailored ATS-optimized resume generation</li>
-            <li>• Personalized cover letter creation</li>
-            <li>• Recruiter email and LinkedIn outreach message generation</li>
-            <li>• Job-specific resume optimization suggestions</li>
-            <li>• Interview talking points and preparation materials</li>
-            <li>• Downloadable AI-generated outputs</li>
-          </ul>
-        </section>
-
-        <section>
-          <h2 class="font-display font-bold text-3xl mb-4">Tech Stack</h2>
-          <div class="flex flex-wrap gap-2">
-            <span class="text-sm bg-zinc-100 dark:bg-zinc-800 px-4 py-2 rounded-full">Python</span>
-            <span class="text-sm bg-zinc-100 dark:bg-zinc-800 px-4 py-2 rounded-full">Streamlit</span>
-            <span class="text-sm bg-zinc-100 dark:bg-zinc-800 px-4 py-2 rounded-full">OpenAI API</span>
-            <span class="text-sm bg-zinc-100 dark:bg-zinc-800 px-4 py-2 rounded-full">PyPDF</span>
-            <span class="text-sm bg-zinc-100 dark:bg-zinc-800 px-4 py-2 rounded-full">python-docx</span>
-            <span class="text-sm bg-zinc-100 dark:bg-zinc-800 px-4 py-2 rounded-full">Prompt Engineering</span>
-          </div>
-        </section>
-
-        <section>
-          <h2 class="font-display font-bold text-3xl mb-4">What I Built</h2>
-          <p class="text-zinc-500 dark:text-zinc-400 leading-relaxed">
-            I developed the application workflow, integrated OpenAI APIs, handled document-processing logic, and designed prompts that generate structured, job-specific outputs. The project focuses on practical automation: turning resume and job-description inputs into useful application assets that can be reviewed, edited, and submitted faster.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="font-display font-bold text-3xl mb-4">Impact</h2>
-          <p class="text-zinc-500 dark:text-zinc-400 leading-relaxed">
-            The project demonstrates my ability to build real-world AI tools using LLMs, APIs, document parsing, and user-facing application design. It also shows how AI can be applied to automate repetitive professional workflows while keeping the final output personalized and relevant.
-          </p>
-        </section>
-      </div>
-    </section>
-  </article>
-</main>
-
-<footer class="border-t border-zinc-100 dark:border-zinc-900">
-  <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-    <p class="text-sm text-zinc-400">&copy; <span id="year"></span> Ayush Bambhroliya. All rights reserved.</p>
-    <p class="text-xs text-zinc-500">Built with Tailwind CSS &amp; Alpine.js</p>
-  </div>
-</footer>
-
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-
-</body>
-</html>
+<section class="hero"><div class="wrap"><a href="projects.html" style="text-decoration:none;color:var(--muted);font-size:14px">← Back to all projects</a><p class="eyebrow" style="margin-top:32px">Career AI Platform · 2025</p><h1>ApplyBuddy-AI</h1><p class="lead">An AI-powered job application assistant that transforms a resume and job description into tailored application materials, outreach messages, and interview preparation.</p><div class="actions"><a class="btn primary" href="https://applybuddy-ai-ajvybt6ddrjht5mkn5mtrz.streamlit.app/#apply-buddy-ai" target="_blank" rel="noopener noreferrer">Open live app ↗</a><a class="btn secondary" href="projects.html">Explore all projects</a></div><div class="meta reveal"><div><small>Role</small><strong>Full-Stack AI Developer</strong></div><div><small>Category</small><strong>Career AI Platform</strong></div><div><small>Built with</small><strong>Python, Streamlit, OpenAI API</strong></div></div></div></section>
+<section class="shot wrap reveal"><div class="frame"><img src="applybuddy-ai-screenshot.png" alt="ApplyBuddy-AI project preview"></div></section>
+<section class="stats wrap"><div class="card stat reveal"><strong>AI</strong><span>Document analysis</span></div><div class="card stat reveal"><strong>5+</strong><span>Generated assets</span></div><div class="card stat reveal"><strong>PDF</strong><span>Resume parsing</span></div></section>
+<section class="section"><div class="wrap two"><article class="card reveal"><p class="eyebrow">01 · The problem</p><h2>Why this needed to exist</h2><p>Job seekers repeatedly rewrite the same information across resumes, cover letters, recruiter emails, LinkedIn messages, and interview notes. The process is slow, inconsistent, and difficult to personalize for every role.</p></article><article class="card reveal"><p class="eyebrow">02 · The solution</p><h2>How I approached it</h2><p>ApplyBuddy-AI centralizes that workflow. A user uploads a resume, provides a job description, and receives tailored materials grounded in both documents. The application focuses on practical, ready-to-use outputs instead of generic career advice.</p></article></div></section>
+<section class="section"><div class="wrap"><p class="eyebrow">03 · Product</p><h2>Core capabilities</h2><div class="two"><div class="card reveal"><ul class="list"><li>Resume and job-description analysis</li><li>Tailored resume recommendations</li><li>Cover-letter generation</li><li>Recruiter email and LinkedIn outreach</li><li>Interview questions and preparation guidance</li><li>Structured, reusable outputs</li></ul></div><div class="card reveal"><p>This project was designed as a complete user workflow, not just a model demo. The interface, processing logic, and outputs work together to move the user from input to a clear, useful result.</p><div class="chips"><span class="chip">Python</span><span class="chip">Streamlit</span><span class="chip">OpenAI API</span><span class="chip">PyPDF</span><span class="chip">Prompt Engineering</span></div></div></div></div></section>
+<section class="section"><div class="wrap"><p class="eyebrow">04 · Architecture</p><h2>How the system works</h2><div class="card steps reveal"><div class="step"><div><h3>User</h3><p>User uploads resume and job description</p></div></div><div class="step"><div><h3>PyPDF</h3><p>PyPDF extracts resume content</p></div></div><div class="step"><div><h3>Application</h3><p>Application prepares structured context</p></div></div><div class="step"><div><h3>OpenAI</h3><p>OpenAI generates tailored career assets</p></div></div><div class="step"><div><h3>Streamlit</h3><p>Streamlit presents editable results</p></div></div></div></div></section>
+<section class="section"><div class="wrap two"><article class="card reveal"><p class="eyebrow">05 · Engineering</p><h2>Challenges solved</h2><ul class="list"><li>Keeping outputs grounded in the supplied documents</li><li>Balancing personalization with concise professional writing</li><li>Handling varied PDF layouts and incomplete information</li><li>Designing prompts that produce consistent sections</li></ul></article><article class="card reveal"><p class="eyebrow">06 · Reflection</p><h2>What I learned</h2><p>This project strengthened my understanding of document pipelines, prompt structure, output consistency, and building AI tools around a specific user workflow rather than a generic chatbot.</p></article></div></section>
+<section class="section"><div class="wrap"><div class="card reveal"><p class="eyebrow">07 · Roadmap</p><h2>Future improvements</h2><ul class="list"><li>Export generated documents to DOCX or PDF</li><li>Add job-application tracking</li><li>Store reusable user profiles</li><li>Add scoring and side-by-side revisions</li></ul></div></div></section>
+<section class="wrap"><div class="cta reveal"><p class="eyebrow">More work</p><h2>Explore the rest of my portfolio</h2><p>See additional projects across AI agents, automation, computer vision, machine learning, and full-stack software.</p><a class="btn" href="projects.html">View all projects →</a></div></section>
+</main><footer class="footer"><div class="wrap foot"><span>© <span id="year"></span> Ayush Bambhroliya</span><span>Designed and built by Ayush Bambhroliya</span></div></footer>
+<script>function page(){return{dark:false,init(){this.dark=localStorage.getItem('theme')==='dark';this.$watch('dark',v=>localStorage.setItem('theme',v?'dark':'light'));document.getElementById('year').textContent=new Date().getFullYear();const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');o.unobserve(e.target)}}),{threshold:.1});document.querySelectorAll('.reveal').forEach(e=>o.observe(e))},toggle(){this.dark=!this.dark}}}</script>
+</body></html>

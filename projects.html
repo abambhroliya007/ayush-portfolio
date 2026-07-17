@@ -1,94 +1,217 @@
 <!DOCTYPE html>
-<html lang="en" x-data="projects()" :class="{'dark':dark}" x-init="init()" class="scroll-smooth">
+<html lang="en" x-data="projectsPage()" :class="{'dark': dark}" x-init="init()" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore Ayush Bambhroliya's AI, automation, machine learning, computer vision, and full-stack software projects." />
+  <meta name="author" content="Ayush Bambhroliya" />
+  <meta property="og:title" content="Projects — Ayush Bambhroliya" />
+  <meta property="og:description" content="A curated collection of AI, automation, ML, and full-stack software projects." />
+  <meta property="og:type" content="website" />
   <title>Projects — Ayush Bambhroliya</title>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap" rel="stylesheet"/>
-  <script>tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{display:['PT Sans','sans-serif'],body:['DM Sans','sans-serif']},colors:{accent:'#FF6B2B','accent-light':'#FF8F5C'}}}}</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Cormorant Garamond', 'serif'],
+            body: ['DM Sans', 'sans-serif']
+          },
+          colors: {
+            cream: '#F6F1E8',
+            paper: '#FBF8F2',
+            forest: '#173A2A',
+            'forest-light': '#24533D',
+            gold: '#B6924C',
+            'gold-light': '#D4B66A',
+            ink: '#1E241F'
+          },
+          boxShadow: {
+            soft: '0 20px 60px rgba(31, 48, 39, 0.10)',
+            card: '0 14px 40px rgba(31, 48, 39, 0.08)'
+          }
+        }
+      }
+    };
+  </script>
+
   <style>
-    *,*::before,*::after{box-sizing:border-box;}
-    html{font-family:'DM Sans',sans-serif;}
-    h1,h2,h3,h4,h5,h6{font-family:'PT Sans',sans-serif;}
-    .reveal{opacity:0;transform:translateY(22px);transition:opacity .55s cubic-bezier(.4,0,.2,1),transform .55s cubic-bezier(.4,0,.2,1);}
-    .reveal.visible{opacity:1;transform:translateY(0);}
-    .nav-link{position:relative;}
-    .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:currentColor;transition:width .25s cubic-bezier(.4,0,.2,1);}
-    .nav-link:hover::after{width:100%;}
-    ::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#FF6B2B;border-radius:99px;}
-    body{transition:background-color .3s,color .3s;}
-    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.4;}
-    .btn-primary{position:relative;overflow:hidden;}
-    .btn-primary::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:rgba(255,255,255,.18);transform:skewX(-20deg);transition:left .4s cubic-bezier(.4,0,.2,1);}
-    .btn-primary:hover::after{left:160%;}
-    [x-cloak]{display:none!important;}
-    .photo-frame{position:relative;overflow:hidden;background:#e4e4e7;}
-    .photo-frame img{width:100%;height:100%;object-fit:cover;display:block;}
-    .project-card{transition:transform .3s cubic-bezier(.4,0,.2,1),border-color .2s;}
-    .project-card:hover{transform:translateY(-4px);}
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { font-family: 'DM Sans', sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Cormorant Garamond', serif; }
+    body { transition: background-color .3s ease, color .3s ease; }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .28;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #B6924C; border-radius: 99px; }
+    [x-cloak] { display: none !important; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .6s cubic-bezier(.4,0,.2,1), transform .6s cubic-bezier(.4,0,.2,1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: .08s; }
+    .d2 { transition-delay: .16s; }
+    .d3 { transition-delay: .24s; }
+
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 1px;
+      background: currentColor;
+      transition: width .22s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    .glass-nav {
+      background: rgba(246, 241, 232, .76);
+      border: 1px solid rgba(182, 146, 76, .14);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+    .dark .glass-nav {
+      background: rgba(18, 26, 22, .74);
+      border-color: rgba(212, 182, 106, .12);
+    }
+
+    .project-card {
+      transition: transform .32s cubic-bezier(.4,0,.2,1), border-color .22s ease, box-shadow .32s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 24px 60px rgba(31, 48, 39, .14);
+    }
+    .dark .project-card:hover {
+      box-shadow: 0 24px 60px rgba(0, 0, 0, .32);
+    }
+
+    .image-wrap { overflow: hidden; background: #e8e2d8; }
+    .image-wrap img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform .6s cubic-bezier(.4,0,.2,1), filter .4s ease;
+    }
+    .project-card:hover .image-wrap img { transform: scale(1.035); }
+
+    .filter-pill { transition: all .22s ease; }
+    .filter-pill:hover { transform: translateY(-1px); }
+
+    .shine { position: relative; overflow: hidden; }
+    .shine::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 55%;
+      height: 100%;
+      background: rgba(255,255,255,.18);
+      transform: skewX(-20deg);
+      transition: left .5s cubic-bezier(.4,0,.2,1);
+    }
+    .shine:hover::after { left: 165%; }
   </style>
 </head>
 
-<body class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-body antialiased">
-
-  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-    :class="scrolled?'bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md shadow-sm shadow-black/5':'bg-transparent'">
-    <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="index.html" class="font-display font-bold text-xl tracking-tight z-10">
-        <span class="text-zinc-900 dark:text-white">ayu</span><span class="text-accent">sh</span>
+<body class="bg-cream dark:bg-[#101713] text-ink dark:text-[#F2EEE5] font-body antialiased">
+  <header class="fixed inset-x-0 top-0 z-50 px-4 pt-4">
+    <nav class="glass-nav max-w-6xl mx-auto h-16 px-5 md:px-6 rounded-2xl flex items-center justify-between shadow-soft" aria-label="Main navigation">
+      <a href="index.html" class="font-display font-bold text-2xl tracking-tight text-forest dark:text-[#F4EFE6]">
+        ayu<span class="text-gold">sh</span>
       </a>
 
-      <ul class="hidden md:flex items-center gap-8 text-sm font-medium">
-        <li><a href="index.html#services" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Services</a></li>
-        <li><a href="projects.html" class="nav-link text-accent font-medium">Work</a></li>
-        <li><a href="index.html#about" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">About</a></li>
-        <li><a href="blog.html" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Blog</a></li>
-        <li><a href="index.html#contact" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Contact</a></li>
+      <ul class="hidden md:flex items-center gap-8 text-sm font-medium" role="list">
+        <li><a href="index.html#services" class="nav-link text-forest/70 dark:text-[#F4EFE6]/70 hover:text-forest dark:hover:text-white">Skills</a></li>
+        <li><a href="projects.html" class="nav-link text-gold">Work</a></li>
+        <li><a href="index.html#about" class="nav-link text-forest/70 dark:text-[#F4EFE6]/70 hover:text-forest dark:hover:text-white">About</a></li>
+        <li><a href="index.html#reviews" class="nav-link text-forest/70 dark:text-[#F4EFE6]/70 hover:text-forest dark:hover:text-white">Experience</a></li>
+        <li><a href="index.html#blog" class="nav-link text-forest/70 dark:text-[#F4EFE6]/70 hover:text-forest dark:hover:text-white">Education</a></li>
+        <li><a href="index.html#contact" class="nav-link text-forest/70 dark:text-[#F4EFE6]/70 hover:text-forest dark:hover:text-white">Contact</a></li>
       </ul>
 
       <div class="flex items-center gap-3">
-        <button @click="dark=!dark;localStorage.setItem('theme',dark?'dark':'light')" class="w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors" :aria-label="dark?'Light mode':'Dark mode'">
-          <svg x-show="!dark" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-          <svg x-show="dark" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+        <button @click="dark = !dark" class="w-10 h-10 rounded-full border border-gold/20 dark:border-gold/20 bg-white/60 dark:bg-white/5 flex items-center justify-center hover:border-gold transition-colors" :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'">
+          <svg x-show="!dark" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg x-show="dark" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
         </button>
 
-        <a href="index.html#contact" class="hidden md:inline-flex items-center gap-2 btn-primary bg-accent text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-accent-light transition-colors">Hire me &rarr;</a>
+        <a href="index.html#contact" class="hidden md:inline-flex shine items-center gap-2 rounded-full bg-forest dark:bg-gold text-white dark:text-[#132019] px-5 py-2.5 text-sm font-medium hover:bg-forest-light dark:hover:bg-gold-light transition-colors">
+          Contact me →
+        </a>
 
-        <button @click="mobileMenu=!mobileMenu" class="md:hidden w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800" aria-label="Toggle menu">
-          <svg x-show="!mobileMenu" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-          <svg x-show="mobileMenu" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        <button @click="mobileMenu = !mobileMenu" class="md:hidden w-10 h-10 rounded-full border border-gold/20 flex items-center justify-center" aria-label="Toggle menu">
+          <svg x-show="!mobileMenu" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg x-show="mobileMenu" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
     </nav>
 
-    <div x-show="mobileMenu" x-cloak class="md:hidden bg-white dark:bg-zinc-950 border-t border-zinc-100 dark:border-zinc-900">
-      <ul class="flex flex-col px-6 py-4 gap-4 text-sm font-medium">
-        <li><a href="index.html#services" @click="mobileMenu=false" class="block text-zinc-700 dark:text-zinc-300">Services</a></li>
-        <li><a href="projects.html" class="block text-accent font-medium">Work</a></li>
-        <li><a href="index.html#about" @click="mobileMenu=false" class="block text-zinc-700 dark:text-zinc-300">About</a></li>
-        <li><a href="blog.html" @click="mobileMenu=false" class="block text-zinc-700 dark:text-zinc-300">Blog</a></li>
-        <li><a href="index.html#contact" @click="mobileMenu=false" class="block text-zinc-700 dark:text-zinc-300">Contact</a></li>
+    <div x-show="mobileMenu" x-cloak x-transition class="glass-nav max-w-6xl mx-auto mt-2 rounded-2xl md:hidden shadow-soft">
+      <ul class="px-6 py-5 flex flex-col gap-4 text-sm font-medium">
+        <li><a href="index.html#services" @click="mobileMenu=false" class="block">Skills</a></li>
+        <li><a href="projects.html" class="block text-gold">Work</a></li>
+        <li><a href="index.html#about" @click="mobileMenu=false" class="block">About</a></li>
+        <li><a href="index.html#reviews" @click="mobileMenu=false" class="block">Experience</a></li>
+        <li><a href="index.html#blog" @click="mobileMenu=false" class="block">Education</a></li>
+        <li><a href="index.html#contact" @click="mobileMenu=false" class="block">Contact</a></li>
       </ul>
     </div>
   </header>
 
-  <main>
-    <section class="pt-36 pb-12 relative overflow-hidden">
-      <div class="absolute top-0 right-0 w-80 h-80 bg-accent/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="max-w-6xl mx-auto px-6 relative z-10">
-        <p class="reveal text-xs font-medium text-accent tracking-widest uppercase mb-3">Portfolio</p>
-        <h1 class="reveal font-display font-bold text-5xl md:text-6xl text-zinc-900 dark:text-white leading-tight mb-4">All Projects</h1>
-        <p class="reveal text-lg text-zinc-500 dark:text-zinc-400 max-w-xl leading-relaxed mb-8">A collection of AI, automation, machine learning, and full-stack software projects built with Python, APIs, LLMs, data tools, and modern web technologies.</p>
+  <main class="relative z-10">
+    <section class="relative pt-40 pb-16 overflow-hidden">
+      <div class="absolute -top-24 right-0 w-[420px] h-[420px] rounded-full bg-gold/10 blur-3xl pointer-events-none"></div>
+      <div class="absolute top-32 -left-24 w-80 h-80 rounded-full bg-forest/10 dark:bg-gold/5 blur-3xl pointer-events-none"></div>
 
-        <div class="reveal flex flex-wrap gap-2">
-          <template x-for="f in filterOptions" :key="f.value">
+      <div class="max-w-6xl mx-auto px-6 relative z-10">
+        <div class="max-w-3xl">
+          <div class="reveal inline-flex items-center gap-2 rounded-full border border-gold/25 bg-white/50 dark:bg-white/5 px-4 py-2 mb-6">
+            <span class="w-2 h-2 rounded-full bg-gold"></span>
+            <span class="text-xs font-semibold tracking-[0.18em] uppercase text-forest/70 dark:text-[#F4EFE6]/70">Selected Engineering Work</span>
+          </div>
+
+          <h1 class="reveal d1 font-display font-bold text-5xl md:text-7xl leading-[.98] text-forest dark:text-[#F4EFE6] mb-6">
+            Projects built at the intersection of <span class="text-gold">AI and software</span>.
+          </h1>
+
+          <p class="reveal d2 text-lg md:text-xl leading-relaxed text-forest/65 dark:text-[#F4EFE6]/65 max-w-2xl">
+            A collection of AI applications, automation systems, machine-learning tools, computer-vision projects, and full-stack products designed to solve practical problems.
+          </p>
+        </div>
+
+        <div class="reveal d3 mt-10 flex flex-wrap items-center gap-3">
+          <template x-for="option in filterOptions" :key="option.value">
             <button
-              @click="filter = f.value"
-              :class="filter === f.value ? 'bg-accent text-white border-accent' : 'bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-700 hover:border-accent'"
-              class="text-sm px-4 py-1.5 rounded-full border transition-colors"
-              x-text="f.label">
+              @click="filter = option.value"
+              class="filter-pill rounded-full border px-4 py-2 text-sm font-medium"
+              :class="filter === option.value
+                ? 'bg-forest text-white border-forest dark:bg-gold dark:text-[#142019] dark:border-gold shadow-card'
+                : 'bg-white/60 dark:bg-white/5 text-forest/70 dark:text-[#F4EFE6]/70 border-gold/20 hover:border-gold hover:text-forest dark:hover:text-white'"
+              x-text="option.label">
             </button>
           </template>
         </div>
@@ -97,154 +220,232 @@
 
     <section class="pb-24">
       <div class="max-w-6xl mx-auto px-6">
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <template x-for="p in allProjects" :key="p.id">
-            <div x-show="filter === 'all' || p.category === filter">
-              <article class="project-card group h-full rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent transition-colors">
-                <a :href="p.url" class="block photo-frame w-full h-52">
-                  <img :src="p.img" :alt="p.title" loading="lazy"/>
-                </a>
-                <div class="p-6">
-                  <div class="flex flex-wrap gap-2 mb-3">
-                    <template x-for="tag in p.tags" :key="tag">
-                      <span class="text-xs px-2.5 py-1 rounded-full"
-                        :class="tag === p.categoryLabel ? 'bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400'"
-                        x-text="tag"></span>
-                    </template>
-                  </div>
-
-                  <a :href="p.url">
-                    <h3 class="font-display font-bold text-lg text-zinc-900 dark:text-white mb-2 group-hover:text-accent transition-colors" x-text="p.title"></h3>
-                  </a>
-
-                  <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4" x-text="p.desc"></p>
-
-                  <div class="flex items-center justify-between">
-                    <a :href="p.url" class="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-900 dark:text-white nav-link">View project →</a>
-                    <span class="text-xs text-zinc-400" x-text="p.year"></span>
-                  </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+          <template x-for="project in filteredProjects" :key="project.id">
+            <article class="project-card reveal group rounded-[1.6rem] overflow-hidden bg-paper dark:bg-[#17211B] border border-gold/15 dark:border-gold/10">
+              <a :href="project.url" class="block image-wrap h-56 relative">
+                <img :src="project.img" :alt="project.title" loading="lazy" />
+                <div class="absolute inset-0 bg-gradient-to-t from-[#112019]/45 via-transparent to-transparent"></div>
+                <div class="absolute top-4 left-4 flex flex-wrap gap-2">
+                  <span class="rounded-full bg-[#F9F5EC]/90 text-forest text-xs font-semibold px-3 py-1.5 backdrop-blur" x-text="project.categoryLabel"></span>
+                  <span class="rounded-full px-3 py-1.5 text-xs font-semibold backdrop-blur"
+                    :class="project.status === 'Live' ? 'bg-emerald-100/90 text-emerald-800' : 'bg-amber-100/90 text-amber-800'"
+                    x-text="project.status">
+                  </span>
                 </div>
-              </article>
-            </div>
+              </a>
+
+              <div class="p-7">
+                <div class="flex items-center justify-between gap-4 mb-4">
+                  <span class="text-xs uppercase tracking-[.18em] text-gold font-semibold" x-text="project.year"></span>
+                  <span class="text-xs text-forest/45 dark:text-[#F4EFE6]/45" x-text="project.type"></span>
+                </div>
+
+                <a :href="project.url">
+                  <h2 class="font-display font-bold text-2xl leading-tight text-forest dark:text-[#F4EFE6] mb-3 group-hover:text-gold transition-colors" x-text="project.title"></h2>
+                </a>
+
+                <p class="text-sm leading-7 text-forest/62 dark:text-[#F4EFE6]/62 mb-5" x-text="project.desc"></p>
+
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <template x-for="tag in project.tags" :key="tag">
+                    <span class="text-xs rounded-full bg-cream dark:bg-white/5 border border-gold/10 px-3 py-1.5 text-forest/65 dark:text-[#F4EFE6]/65" x-text="tag"></span>
+                  </template>
+                </div>
+
+                <div class="flex items-center justify-between gap-4 pt-5 border-t border-gold/10">
+                  <a :href="project.url" class="nav-link inline-flex items-center gap-2 text-sm font-semibold text-forest dark:text-[#F4EFE6] hover:text-gold">
+                    View project →
+                  </a>
+                  <a x-show="project.liveUrl" :href="project.liveUrl" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-gold hover:text-gold-light">
+                    Live demo ↗
+                  </a>
+                </div>
+              </div>
+            </article>
           </template>
         </div>
 
-        <div x-show="visibleCount === 0" x-cloak class="text-center py-20">
-          <p class="text-zinc-400 text-sm">No projects in this category yet.</p>
+        <div x-show="filteredProjects.length === 0" x-cloak class="text-center py-24">
+          <p class="font-display text-3xl text-forest dark:text-[#F4EFE6] mb-2">Nothing here yet.</p>
+          <p class="text-sm text-forest/55 dark:text-[#F4EFE6]/55">Try another project category.</p>
         </div>
       </div>
     </section>
 
     <section class="pb-24">
       <div class="max-w-6xl mx-auto px-6">
-        <div class="bg-zinc-900 dark:bg-zinc-800 rounded-3xl p-10 md:p-14 text-center relative overflow-hidden">
-          <div class="relative z-10">
-            <p class="text-xs font-medium text-accent tracking-widest uppercase mb-4">Ready to start?</p>
-            <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-4">Want to collaborate?</h2>
-            <p class="text-zinc-400 max-w-md mx-auto mb-8">I’m open to AI/ML, automation, software engineering, and internship opportunities. Let’s connect and build something useful.</p>
-            <a href="index.html#contact" class="inline-flex items-center gap-2 btn-primary bg-accent text-white font-medium px-8 py-3.5 rounded-full hover:bg-accent-light transition-colors">Contact me &rarr;</a>
+        <div class="relative overflow-hidden rounded-[2rem] bg-forest dark:bg-[#17211B] border border-gold/15 px-8 py-12 md:px-14 md:py-16 shadow-soft">
+          <div class="absolute -top-24 -right-24 w-72 h-72 bg-gold/20 rounded-full blur-3xl"></div>
+          <div class="relative z-10 grid md:grid-cols-[1fr_auto] gap-8 items-center">
+            <div>
+              <p class="text-xs uppercase tracking-[.2em] text-gold mb-4 font-semibold">Open to opportunities</p>
+              <h2 class="font-display font-bold text-4xl md:text-5xl text-white leading-tight mb-4">Have a role or project in mind?</h2>
+              <p class="text-white/65 max-w-2xl leading-relaxed">I am open to AI/ML, automation, backend, full-stack software engineering, and internship opportunities.</p>
+            </div>
+
+            <a href="index.html#contact" class="shine inline-flex items-center justify-center rounded-full bg-gold text-[#132019] px-7 py-3.5 font-semibold hover:bg-gold-light transition-colors whitespace-nowrap">
+              Start a conversation →
+            </a>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="border-t border-zinc-100 dark:border-zinc-900">
+  <footer class="relative z-10 border-t border-gold/10">
     <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-sm text-zinc-400">&copy; <span id="year"></span> Ayush Bambhroliya. All rights reserved.</p>
-      <p class="text-xs text-zinc-500">Built with Tailwind CSS &amp; Alpine.js</p>
+      <p class="text-sm text-forest/50 dark:text-[#F4EFE6]/50">© <span id="year"></span> Ayush Bambhroliya. All rights reserved.</p>
+      <p class="text-xs text-forest/45 dark:text-[#F4EFE6]/45">Designed and built by Ayush Bambhroliya</p>
     </div>
   </footer>
 
   <script>
-    function projects() {
+    function projectsPage() {
       return {
         dark: false,
-        scrolled: false,
         mobileMenu: false,
         filter: 'all',
 
         filterOptions: [
-          { value: 'all',        label: 'All (7)' },
+          { value: 'all', label: 'All (7)' },
           { value: 'automation', label: 'AI Automation' },
-          { value: 'ai-apps',    label: 'AI Apps' },
-          { value: 'vision',     label: 'Computer Vision' },
-          { value: 'ml-data',    label: 'ML / Data' },
+          { value: 'ai-apps', label: 'AI Apps' },
+          { value: 'vision', label: 'Computer Vision' },
+          { value: 'ml-data', label: 'ML / Data' }
         ],
 
         allProjects: [
-          { id:1, title:'AI Workflow Automation System', category:'automation', categoryLabel:'AI Automation', tags:['AI Automation','JavaScript','n8n','Python','APIs'], year:'2025', desc:'Developed AI-powered workflows that collect, process, classify, and summarize information from multiple APIs and data sources using LLMs and automation tools. Designed reusable pipelines with validation, logging, and structured outputs.', img:'https://images.unsplash.com/photo-1518770660439-4636190af475?w=700&q=80', url:'ai-workflow-automation.html' },
-{
-  id:2,
-  title:'AgentFlow',
-  category:'automation',
-  categoryLabel:'AI Automation',
-  tags:[
-    'AI Automation',
-    'Python',
-    'LangGraph',
-    'OpenAI API',
-    'Streamlit'
-  ],
-  year:'2025',
-  desc:'A lightweight multi-agent AI task runner built with Python, LangGraph, and the OpenAI API. Specialized AI agents collaborate through an orchestrated workflow to solve complex tasks.',
-  img:'agentflow-screenshot.png',
-  url:'multi-agent-task-runner.html'
-},
-          { id:3, title:'ApplyBuddy-AI', category:'ai-apps', categoryLabel:'AI Apps', tags:['AI Apps','Python','Streamlit','OpenAI API','PyPDF'], year:'2025', desc:'Created an AI-powered job application assistant that analyzes resumes and job descriptions to generate tailored resumes, cover letters, recruiter emails, LinkedIn outreach messages, and interview preparation materials.', img:'applybuddy-ai-screenshot.png', url:'applybuddy-ai.html' },
-          { id:4, title:'Resume-Meets-Job', category:'ai-apps', categoryLabel:'AI Apps', tags:['AI Apps','Python','Streamlit','OpenAI API','Prompt Engineering'], year:'2025', desc:'Built an AI-powered resume analysis agent that evaluates job fit, identifies skill gaps, generates personalized improvement strategies, creates tailored resume summaries, interview questions, and learning plans for missing skills.', img:'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=700&q=80', url:'resume-meets-job.html' },
-          { id:5, title:'Golf Swing Analyzer', category:'vision', categoryLabel:'Computer Vision', tags:['Computer Vision','Python','FastAPI','OpenCV','MediaPipe','React'], year:'2025', desc:'Developed a full-stack AI application that analyzes golf swing videos using computer vision and pose estimation to extract biomechanical metrics such as tempo, rotation, and stability.', img:'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=700&q=80', url:'golf-swing-analyzer.html' },
-          { id:6, title:'ML Stock Analysis Assistant', category:'ml-data', categoryLabel:'ML / Data', tags:['ML / Data','Python','Pandas','scikit-learn','CLI'], year:'2025', desc:'AI-powered stock analysis platform that processes financial data, applies machine learning models, and generates insights through an interactive Streamlit interface.', img:'ml-stock-screenshot.png', url:'ml-stock-analysis-assistant.html' },
           {
-  id:7,
-  title:'Maps: Goal Planner',
-  category:'ai-apps',
-  categoryLabel:'AI Apps',
-  tags:[
-    'AI Apps',
-    'Next.js',
-    'FastAPI',
-    'OpenAI',
-    'Leaflet',
-    'OSRM'
-  ],
-  year:'2026',
-  desc:'AI-powered goal-based route planner that transforms natural-language objectives into optimized multi-stop routes, ranked businesses, interactive maps, timelines, and AI-generated reasoning.',
-  img:'maps-goal-planner-screenshot.png',
-  url:'maps-goal-planner.html'
-},
+            id: 1,
+            title: 'Maps: Goal Planner',
+            category: 'ai-apps',
+            categoryLabel: 'AI Apps',
+            type: 'Full-Stack AI',
+            tags: ['Next.js', 'FastAPI', 'OpenAI', 'Leaflet'],
+            year: '2026',
+            status: 'Case Study',
+            desc: 'An AI-powered route planner that transforms natural-language goals into ranked destinations, optimized multi-stop routes, interactive maps, and trip timelines.',
+            img: 'maps-goal-planner-screenshot.png',
+            url: 'maps-goal-planner.html',
+            liveUrl: ''
+          },
+          {
+            id: 2,
+            title: 'AgentFlow',
+            category: 'automation',
+            categoryLabel: 'AI Automation',
+            type: 'Multi-Agent System',
+            tags: ['Python', 'LangGraph', 'OpenAI API', 'Streamlit'],
+            year: '2025',
+            status: 'Live',
+            desc: 'A lightweight multi-agent AI task runner where specialized agents collaborate on planning, research, execution, and validation through an orchestrated workflow.',
+            img: 'agentflow-screenshot.png',
+            url: 'multi-agent-task-runner.html',
+            liveUrl: 'https://agentflow-jyzejsrsrgqcqmzwh5q4jj.streamlit.app/'
+          },
+          {
+            id: 3,
+            title: 'ApplyBuddy-AI',
+            category: 'ai-apps',
+            categoryLabel: 'AI Apps',
+            type: 'Career AI Tool',
+            tags: ['Python', 'Streamlit', 'OpenAI API', 'PyPDF'],
+            year: '2025',
+            status: 'Live',
+            desc: 'An AI-powered job application assistant that generates tailored resumes, cover letters, recruiter emails, LinkedIn outreach, and interview-preparation materials.',
+            img: 'applybuddy-ai-screenshot.png',
+            url: 'applybuddy-ai.html',
+            liveUrl: 'https://applybuddy-ai-ajvybt6ddrjht5mkn5mtrz.streamlit.app/#apply-buddy-ai'
+          },
+          {
+            id: 4,
+            title: 'Resume-Meets-Job',
+            category: 'ai-apps',
+            categoryLabel: 'AI Apps',
+            type: 'Resume Analysis',
+            tags: ['Python', 'Streamlit', 'OpenAI API', 'Prompt Engineering'],
+            year: '2025',
+            status: 'Live',
+            desc: 'An AI resume-analysis agent that evaluates job fit, identifies skill gaps, generates tailored improvement strategies, and prepares interview and learning plans.',
+            img: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=1000&q=85',
+            url: 'resume-meets-job.html',
+            liveUrl: 'https://abambhroliya007-resume-meets-job-app-58ufpd.streamlit.app/'
+          },
+          {
+            id: 5,
+            title: 'AI Workflow Automation System',
+            category: 'automation',
+            categoryLabel: 'AI Automation',
+            type: 'Workflow Platform',
+            tags: ['n8n', 'Python', 'JavaScript', 'APIs'],
+            year: '2025',
+            status: 'Case Study',
+            desc: 'Reusable AI workflows that collect, validate, classify, summarize, and route information from multiple APIs and data sources using structured LLM outputs.',
+            img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1000&q=85',
+            url: 'ai-workflow-automation.html',
+            liveUrl: ''
+          },
+          {
+            id: 6,
+            title: 'Golf Swing Analyzer',
+            category: 'vision',
+            categoryLabel: 'Computer Vision',
+            type: 'Sports Analytics',
+            tags: ['OpenCV', 'MediaPipe', 'FastAPI', 'React'],
+            year: '2025',
+            status: 'Case Study',
+            desc: 'A full-stack computer-vision application that analyzes golf-swing video and extracts biomechanical metrics such as tempo, rotation, posture, and stability.',
+            img: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1000&q=85',
+            url: 'golf-swing-analyzer.html',
+            liveUrl: ''
+          },
+          {
+            id: 7,
+            title: 'ML Stock Analysis Assistant',
+            category: 'ml-data',
+            categoryLabel: 'ML / Data',
+            type: 'Financial ML',
+            tags: ['Python', 'Pandas', 'scikit-learn', 'Streamlit'],
+            year: '2025',
+            status: 'Live',
+            desc: 'An interactive stock-analysis platform that processes financial data, applies machine-learning models, and turns model output into understandable investment research insights.',
+            img: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1000&q=85',
+            url: 'ml-stock-analysis-assistant.html',
+            liveUrl: 'https://ml-stock-assistant-5hu7gkpha2p6n52ayppwny.streamlit.app/'
+          }
         ],
 
-        get visibleCount() {
-          if (this.filter === 'all') return this.allProjects.length;
-          return this.allProjects.filter(p => p.category === this.filter).length;
+        get filteredProjects() {
+          if (this.filter === 'all') return this.allProjects;
+          return this.allProjects.filter(project => project.category === this.filter);
         },
 
         init() {
-          this.dark = localStorage.getItem('theme') === 'dark'
-            || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          this.dark = localStorage.getItem('theme') === 'dark' ||
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
 
-          window.addEventListener('scroll', () => {
-            this.scrolled = window.scrollY > 20;
-          }, { passive: true });
+          this.$watch('dark', value => {
+            localStorage.setItem('theme', value ? 'dark' : 'light');
+          });
 
           this.$nextTick(() => {
-            const obs = new IntersectionObserver(entries => {
-              entries.forEach(e => {
-                if (e.isIntersecting) {
-                  e.target.classList.add('visible');
-                  obs.unobserve(e.target);
+            const observer = new IntersectionObserver(entries => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('in');
+                  observer.unobserve(entry.target);
                 }
               });
             }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
-            document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+            document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
           });
-        }
-      }
-    }
 
-    document.getElementById('year').textContent = new Date().getFullYear();
+          document.getElementById('year').textContent = new Date().getFullYear();
+        }
+      };
+    }
   </script>
 </body>
 </html>
