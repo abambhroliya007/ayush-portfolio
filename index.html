@@ -55,6 +55,17 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opa
 .card-h:hover{transform:translateY(-4px)}
 .stag{transition:border-color .18s}
 [x-cloak]{display:none!important}
+
+/* Portfolio terminal */
+.terminal-launcher{position:fixed;right:24px;bottom:24px;z-index:80;width:56px;height:56px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:#18181b;color:#fff;border:1px solid #3f3f46;box-shadow:0 18px 45px rgba(0,0,0,.22);transition:transform .25s ease,background-color .25s ease}
+.terminal-launcher:hover{transform:translateY(-4px) scale(1.03);background:#FF6B2B}
+.terminal-window{position:fixed;right:24px;bottom:92px;z-index:90;width:min(620px,calc(100vw - 32px));height:min(520px,calc(100vh - 130px));display:flex;flex-direction:column;overflow:hidden;border-radius:18px;border:1px solid #3f3f46;background:#09090b;color:#e4e4e7;box-shadow:0 24px 70px rgba(0,0,0,.42)}
+.terminal-header{min-height:48px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;background:#18181b;border-bottom:1px solid #27272a}
+.terminal-dots{display:flex;align-items:center;gap:7px}.terminal-dot{width:11px;height:11px;border-radius:999px}.terminal-dot-red{background:#ef4444}.terminal-dot-yellow{background:#eab308}.terminal-dot-green{background:#22c55e}
+.terminal-title{color:#a1a1aa;font-size:12px;font-family:monospace}.terminal-close{color:#a1a1aa;font-size:20px;line-height:1;transition:color .2s ease}.terminal-close:hover{color:#fff}
+.terminal-body{flex:1;overflow-y:auto;padding:18px;font-family:Consolas,Monaco,"Courier New",monospace;font-size:14px;line-height:1.65}.terminal-line{white-space:pre-wrap;overflow-wrap:anywhere;margin-bottom:8px}.terminal-command{color:#f97316}.terminal-muted{color:#71717a}.terminal-success{color:#4ade80}.terminal-link{color:#60a5fa;text-decoration:underline;text-underline-offset:3px}
+.terminal-input-row{display:flex;align-items:center;gap:8px;padding-top:6px}.terminal-prompt{color:#4ade80;font-family:Consolas,Monaco,"Courier New",monospace;white-space:nowrap}.terminal-input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:#fff;font-family:Consolas,Monaco,"Courier New",monospace;caret-color:#FF6B2B}
+@media(max-width:640px){.terminal-launcher{right:16px;bottom:16px}.terminal-window{right:16px;bottom:84px;width:calc(100vw - 32px);height:calc(100vh - 115px)}}
 </style>
 </head>
 
@@ -435,6 +446,108 @@ function app() {
         }
       }
     }
+  }
+}
+</script>
+
+
+<!-- Interactive Portfolio Terminal -->
+<div x-data="portfolioTerminal()" x-init="initializeTerminal()" @keydown.escape.window="terminalOpen=false">
+  <button type="button" class="terminal-launcher" @click="openTerminal()" aria-label="Open portfolio terminal" title="Open portfolio terminal">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+  </button>
+
+  <section x-show="terminalOpen" x-cloak x-transition.opacity.duration.200ms class="terminal-window" role="dialog" aria-modal="true" aria-label="Ayush portfolio terminal">
+    <div class="terminal-header">
+      <div class="terminal-dots" aria-hidden="true"><span class="terminal-dot terminal-dot-red"></span><span class="terminal-dot terminal-dot-yellow"></span><span class="terminal-dot terminal-dot-green"></span></div>
+      <p class="terminal-title">ayush@portfolio:~</p>
+      <button type="button" class="terminal-close" @click="terminalOpen=false" aria-label="Close portfolio terminal">&times;</button>
+    </div>
+
+    <div class="terminal-body" x-ref="terminalBody" @click="$refs.terminalInput.focus()">
+      <div class="terminal-line terminal-success">Ayush Portfolio Terminal v1.0</div>
+      <div class="terminal-line">Type <span class="terminal-command">help</span> to see available commands.</div>
+      <div class="terminal-line terminal-muted">Tip: Press Esc to close the terminal.</div>
+
+      <template x-for="(line,index) in terminalLines" :key="index">
+        <div class="terminal-line" :class="line.className" x-html="line.content"></div>
+      </template>
+
+      <form class="terminal-input-row" @submit.prevent="runCommand()">
+        <span class="terminal-prompt">visitor@ayush:~$</span>
+        <input x-ref="terminalInput" x-model="terminalInput" @keydown.arrow-up.prevent="previousCommand()" @keydown.arrow-down.prevent="nextCommand()" class="terminal-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal command">
+      </form>
+    </div>
+  </section>
+</div>
+
+<script>
+function portfolioTerminal(){
+  return {
+    terminalOpen:false,terminalInput:'',terminalLines:[],commandHistory:[],historyIndex:-1,
+    initializeTerminal(){this.terminalLines=[]},
+    openTerminal(){this.terminalOpen=true;this.$nextTick(()=>{this.$refs.terminalInput.focus();this.scrollTerminalToBottom()})},
+    runCommand(){
+      const raw=this.terminalInput.trim();const cmd=raw.toLowerCase();if(!raw)return;
+      this.terminalLines.push({content:'<span class="terminal-success">visitor@ayush:~$</span> '+this.escapeHtml(raw),className:''});
+      this.commandHistory.push(raw);this.historyIndex=this.commandHistory.length;this.terminalInput='';
+      switch(cmd){
+        case 'help':this.printHelp();break;
+        case 'about':this.printText('Ayush Bambhroliya is a Computer Science student and full-stack AI developer focused on AI applications, automation, machine learning, APIs, and modern web development.');break;
+        case 'projects':this.printProjects();break;
+        case 'skills':this.printText('Core skills: Python, JavaScript, TypeScript, React, Next.js, FastAPI, Streamlit, OpenAI API, LangGraph, machine learning, REST APIs, automation, data analysis, and prompt engineering.');break;
+        case 'experience':this.printText('Experience includes technical support, student leadership, customer-facing operations, AI application development, workflow automation, and independent software projects.');break;
+        case 'education':this.printText('B.S. Computer Science student at California State University, Sacramento.');break;
+        case 'resume':this.printLink("Open Ayush's resume",'Ayush_Bambhroliya_Resume.pdf');break;
+        case 'github':this.printLink('Open GitHub','https://github.com/abambhroliya007');break;
+        case 'linkedin':this.printLink('Open LinkedIn','https://www.linkedin.com/in/ayush-bambhroliya-4045171b8/');break;
+        case 'contact':this.printText('Email: ayush.bambhroliya007@gmail.com');this.printLink('Go to contact section','#contact');break;
+        case 'maps':this.printLink('Open Maps: Goal Planner','maps-goal-planner.html');break;
+        case 'agentflow':this.printLink('Open AgentFlow','multi-agent-task-runner.html');break;
+        case 'applybuddy':this.printLink('Open ApplyBuddy-AI','applybuddy-ai.html');break;
+        case 'resumejob':this.printLink('Open Resume-Meets-Job','resume-meets-job.html');break;
+        case 'stock':this.printLink('Open ML Stock Analysis Assistant','ml-stock-analysis-assistant.html');break;
+        case 'clear':this.terminalLines=[];break;
+        case 'whoami':this.printText("You are currently exploring Ayush Bambhroliya's developer portfolio.");break;
+        case 'date':this.printText(new Date().toString());break;
+        default:this.printError('Command not found: '+this.escapeHtml(raw)+'. Type help to see available commands.')
+      }
+      this.$nextTick(()=>{this.scrollTerminalToBottom();this.$refs.terminalInput.focus()})
+    },
+    printHelp(){this.terminalLines.push({content:`<span class="terminal-command">help</span>        Show available commands
+<span class="terminal-command">about</span>       Learn about Ayush
+<span class="terminal-command">projects</span>    List portfolio projects
+<span class="terminal-command">skills</span>      View technical skills
+<span class="terminal-command">experience</span>  View experience summary
+<span class="terminal-command">education</span>   View education
+<span class="terminal-command">resume</span>      Open resume
+<span class="terminal-command">github</span>      Open GitHub profile
+<span class="terminal-command">linkedin</span>    Open LinkedIn profile
+<span class="terminal-command">contact</span>     View contact information
+<span class="terminal-command">maps</span>        Open Maps: Goal Planner
+<span class="terminal-command">agentflow</span>   Open AgentFlow
+<span class="terminal-command">applybuddy</span>  Open ApplyBuddy-AI
+<span class="terminal-command">resumejob</span>   Open Resume-Meets-Job
+<span class="terminal-command">stock</span>       Open ML Stock Assistant
+<span class="terminal-command">whoami</span>      Identify the current visitor
+<span class="terminal-command">date</span>        Display the current date
+<span class="terminal-command">clear</span>       Clear the terminal`,className:''})},
+    printProjects(){this.terminalLines.push({content:`1. Maps: Goal Planner
+2. AgentFlow
+3. ApplyBuddy-AI
+4. Resume-Meets-Job
+5. AI Workflow Automation System
+6. Golf Swing Analyzer
+7. ML Stock Analysis Assistant
+
+Type <span class="terminal-command">maps</span>, <span class="terminal-command">agentflow</span>, <span class="terminal-command">applybuddy</span>, <span class="terminal-command">resumejob</span>, or <span class="terminal-command">stock</span> to open a project.`,className:''})},
+    printText(text){this.terminalLines.push({content:this.escapeHtml(text),className:''})},
+    printError(text){this.terminalLines.push({content:text,className:'text-red-400'})},
+    printLink(label,url){this.terminalLines.push({content:'<a class="terminal-link" href="'+this.escapeHtml(url)+'" target="_blank" rel="noopener noreferrer">'+this.escapeHtml(label)+' ↗</a>',className:''})},
+    previousCommand(){if(!this.commandHistory.length)return;this.historyIndex=Math.max(0,this.historyIndex-1);this.terminalInput=this.commandHistory[this.historyIndex]},
+    nextCommand(){if(!this.commandHistory.length)return;this.historyIndex=Math.min(this.commandHistory.length,this.historyIndex+1);this.terminalInput=this.historyIndex===this.commandHistory.length?'':this.commandHistory[this.historyIndex]},
+    scrollTerminalToBottom(){const el=this.$refs.terminalBody;if(el)el.scrollTop=el.scrollHeight},
+    escapeHtml(v){return String(v).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;')}
   }
 }
 </script>
