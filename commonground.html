@@ -195,8 +195,8 @@ a{color:inherit}
   transition:
     transform .25s ease,
     background .25s ease,
-    border-color .25s ease,
-    color .25s ease;
+    color .25s ease,
+    border-color .25s ease;
 }
 
 .btn:hover{
@@ -218,8 +218,8 @@ a{color:inherit}
 }
 
 .secondary:hover{
-  border-color:var(--gold);
   color:var(--gold);
+  border-color:var(--gold);
 }
 
 .meta{
@@ -245,7 +245,7 @@ a{color:inherit}
   margin-bottom:8px;
 }
 
-/* IMAGE */
+/* SCREENSHOT */
 
 .shot{
   margin:0 auto 64px;
@@ -443,7 +443,9 @@ a{color:inherit}
   color:var(--paper);
 }
 
-.primary-node p{opacity:.8}
+.primary-node p{
+  opacity:.8;
+}
 
 .arch-bus{
   width:3px;
@@ -530,23 +532,28 @@ a{color:inherit}
 .cta-actions{
   display:flex;
   justify-content:center;
+  align-items:center;
   gap:12px;
   flex-wrap:wrap;
 }
 
-.cta .btn-demo{
+.cta .demo-btn{
   border-color:var(--gold);
   background:var(--gold);
   color:#18231f;
 }
 
-.cta .btn-outline{
+.cta .demo-btn:hover{
+  background:#c9a75f;
+}
+
+.cta .projects-btn{
   background:transparent;
   color:var(--paper);
   border-color:color-mix(in srgb,var(--paper) 40%,transparent);
 }
 
-.cta .btn-outline:hover{
+.cta .projects-btn:hover{
   color:var(--gold);
   border-color:var(--gold);
 }
@@ -578,6 +585,7 @@ a{color:inherit}
 }
 
 @media(max-width:900px){
+
   .arch-grid{
     grid-template-columns:1fr;
   }
@@ -601,21 +609,60 @@ a{color:inherit}
   .arch-flow{
     grid-template-columns:1fr;
   }
+
 }
 
 @media(max-width:760px){
-  .links a:not(.keep){display:none}
-  .hero{padding-top:125px}
-  .meta,.stats,.two{grid-template-columns:1fr}
-  .hero h1{font-size:56px}
-  .section h2,.cta h2{font-size:38px}
-  .frame img{height:330px}
-  .cta{padding:38px 22px}
-  .foot{flex-direction:column}
-  .wrap{width:min(100% - 28px,1120px)}
-  .arch-shell{padding:22px}
-  .arch-col{grid-template-columns:1fr}
+
+  .links a:not(.keep){
+    display:none;
+  }
+
+  .hero{
+    padding-top:125px;
+  }
+
+  .meta,
+  .stats,
+  .two{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:56px;
+  }
+
+  .section h2,
+  .cta h2{
+    font-size:38px;
+  }
+
+  .frame img{
+    height:330px;
+  }
+
+  .cta{
+    padding:38px 22px;
+  }
+
+  .foot{
+    flex-direction:column;
+  }
+
+  .wrap{
+    width:min(100% - 28px,1120px);
+  }
+
+  .arch-shell{
+    padding:22px;
+  }
+
+  .arch-col{
+    grid-template-columns:1fr;
+  }
+
 }
+
 </style>
 </head>
 
@@ -624,27 +671,51 @@ a{color:inherit}
 <div class="noise"></div>
 
 <header class="nav">
+
   <div class="wrap navin">
 
-    <a class="brand" href="index.html">ayush</a>
+    <a class="brand" href="index.html">
+      ayush
+    </a>
 
     <nav class="links">
-      <a href="index.html#services">Skills</a>
-      <a class="keep" href="projects.html">Projects</a>
-      <a href="index.html#about">About</a>
-      <a href="index.html#contact">Contact</a>
 
-      <button class="iconbtn" @click="toggle()" aria-label="Toggle theme">
+      <a href="index.html#services">
+        Skills
+      </a>
+
+      <a class="keep" href="projects.html">
+        Projects
+      </a>
+
+      <a href="index.html#about">
+        About
+      </a>
+
+      <a href="index.html#contact">
+        Contact
+      </a>
+
+      <button
+        class="iconbtn"
+        @click="toggle()"
+        aria-label="Toggle theme"
+      >
         <span x-text="dark?'☀':'☾'"></span>
       </button>
+
     </nav>
 
   </div>
+
 </header>
 
 <main>
 
+<!-- HERO -->
+
 <section class="hero">
+
   <div class="wrap">
 
     <a
@@ -654,11 +725,16 @@ a{color:inherit}
       ← Back to all projects
     </a>
 
-    <p class="eyebrow" style="margin-top:32px">
+    <p
+      class="eyebrow"
+      style="margin-top:32px"
+    >
       AI Recommendation Systems · 2026
     </p>
 
-    <h1>CommonGround</h1>
+    <h1>
+      CommonGround
+    </h1>
 
     <p class="lead">
       A full-stack AI-powered group entertainment recommendation platform
@@ -666,6 +742,8 @@ a{color:inherit}
       genuine deal-breakers, and finds the strongest movie or TV show
       for the group as a whole.
     </p>
+
+    <!-- TOP LIVE DEMO -->
 
     <div class="actions">
 
@@ -678,7 +756,10 @@ a{color:inherit}
         🚀 Live Demo
       </a>
 
-      <a class="btn secondary" href="projects.html">
+      <a
+        class="btn secondary"
+        href="projects.html"
+      >
         Explore all projects
       </a>
 
@@ -704,16 +785,25 @@ a{color:inherit}
     </div>
 
   </div>
+
 </section>
 
+<!-- SCREENSHOT -->
+
 <section class="shot wrap reveal">
+
   <div class="frame">
+
     <img
       src="commonground-screenshot.png"
       alt="CommonGround group entertainment recommendation interface"
     >
+
   </div>
+
 </section>
+
+<!-- STATS -->
 
 <section class="stats wrap">
 
@@ -734,14 +824,21 @@ a{color:inherit}
 
 </section>
 
+<!-- PROBLEM / SOLUTION -->
+
 <section class="section">
+
   <div class="wrap two">
 
     <article class="card reveal">
 
-      <p class="eyebrow">01 · The problem</p>
+      <p class="eyebrow">
+        01 · The problem
+      </p>
 
-      <h2>Recommendations get harder in groups</h2>
+      <h2>
+        Recommendations get harder in groups
+      </h2>
 
       <p>
         Traditional recommendation systems optimize for one person.
@@ -755,9 +852,13 @@ a{color:inherit}
 
     <article class="card reveal">
 
-      <p class="eyebrow">02 · The solution</p>
+      <p class="eyebrow">
+        02 · The solution
+      </p>
 
-      <h2>Find the overlap without ignoring deal-breakers</h2>
+      <h2>
+        Find the overlap without ignoring deal-breakers
+      </h2>
 
       <p>
         CommonGround converts each person's natural-language request
@@ -769,14 +870,22 @@ a{color:inherit}
     </article>
 
   </div>
+
 </section>
 
+<!-- PRODUCT -->
+
 <section class="section">
+
   <div class="wrap">
 
-    <p class="eyebrow">03 · Product</p>
+    <p class="eyebrow">
+      03 · Product
+    </p>
 
-    <h2>Core capabilities</h2>
+    <h2>
+      Core capabilities
+    </h2>
 
     <div class="two">
 
@@ -806,6 +915,7 @@ a{color:inherit}
         </p>
 
         <div class="chips">
+
           <span class="chip">Next.js</span>
           <span class="chip">React</span>
           <span class="chip">TypeScript</span>
@@ -815,6 +925,7 @@ a{color:inherit}
           <span class="chip">Pydantic</span>
           <span class="chip">OpenAI</span>
           <span class="chip">TMDB API</span>
+
         </div>
 
       </div>
@@ -822,14 +933,22 @@ a{color:inherit}
     </div>
 
   </div>
+
 </section>
 
+<!-- ARCHITECTURE -->
+
 <section class="section">
+
   <div class="wrap">
 
-    <p class="eyebrow">04 · Architecture</p>
+    <p class="eyebrow">
+      04 · Architecture
+    </p>
 
-    <h2>How CommonGround makes a group decision</h2>
+    <h2>
+      How CommonGround makes a group decision
+    </h2>
 
     <div class="arch-shell reveal">
 
@@ -838,28 +957,52 @@ a{color:inherit}
         <div class="arch-col">
 
           <article class="arch-node">
-            <div class="icon">👥</div>
-            <h3>Group Input</h3>
+
+            <div class="icon">
+              👥
+            </div>
+
+            <h3>
+              Group Input
+            </h3>
+
             <p>
               Each participant describes what they want in natural language.
             </p>
+
           </article>
 
           <article class="arch-node">
-            <div class="icon">◈</div>
-            <h3>Next.js Frontend</h3>
+
+            <div class="icon">
+              ◈
+            </div>
+
+            <h3>
+              Next.js Frontend
+            </h3>
+
             <p>
               Maintains room state, participants, content mode, history,
               loading state, and recommendation results.
             </p>
+
           </article>
 
           <article class="arch-node">
-            <div class="icon">↔</div>
-            <h3>Preference Parser</h3>
+
+            <div class="icon">
+              ↔
+            </div>
+
+            <h3>
+              Preference Parser
+            </h3>
+
             <p>
               Converts natural language into structured preference profiles.
             </p>
+
           </article>
 
         </div>
@@ -867,23 +1010,39 @@ a{color:inherit}
         <div class="arch-center">
 
           <article class="arch-node primary-node">
-            <div class="icon">⚙</div>
-            <h3>Consensus Engine</h3>
+
+            <div class="icon">
+              ⚙
+            </div>
+
+            <h3>
+              Consensus Engine
+            </h3>
+
             <p>
               Coordinates constraints, discovery, validation, ranking,
               diversity, and explainability across the room.
             </p>
+
           </article>
 
           <div class="arch-bus"></div>
 
           <article class="arch-node">
-            <div class="icon">✓</div>
-            <h3>Explainable Recommendations</h3>
+
+            <div class="icon">
+              ✓
+            </div>
+
+            <h3>
+              Explainable Recommendations
+            </h3>
+
             <p>
               Returns a strongest-match recommendation plus alternatives,
               group-fit scores, individual-fit scores, and explanations.
             </p>
+
           </article>
 
         </div>
@@ -891,48 +1050,88 @@ a{color:inherit}
         <div class="arch-col">
 
           <article class="arch-node">
-            <div class="icon">H/S</div>
-            <h3>Hard / Soft Classification</h3>
+
+            <div class="icon">
+              H/S
+            </div>
+
+            <h3>
+              Hard / Soft Classification
+            </h3>
+
             <p>
               Separates true deal-breakers from preferences that should only
               influence ranking.
             </p>
+
           </article>
 
           <article class="arch-node">
-            <div class="icon">🎬</div>
-            <h3>TMDB Discovery</h3>
+
+            <div class="icon">
+              🎬
+            </div>
+
+            <h3>
+              TMDB Discovery
+            </h3>
+
             <p>
               Retrieves real movie or television candidates using targeted,
               expanded, and broad discovery passes.
             </p>
+
           </article>
 
           <article class="arch-node">
-            <div class="icon">⚖</div>
-            <h3>Validation Layer</h3>
+
+            <div class="icon">
+              ⚖
+            </div>
+
+            <h3>
+              Validation Layer
+            </h3>
+
             <p>
               Applies deterministic metadata filtering followed by
               conservative semantic constraint validation.
             </p>
+
           </article>
 
           <article class="arch-node">
-            <div class="icon">AI</div>
-            <h3>AI Group Ranking</h3>
+
+            <div class="icon">
+              AI
+            </div>
+
+            <h3>
+              AI Group Ranking
+            </h3>
+
             <p>
               Evaluates how well each validated candidate represents the
               entire room instead of matching isolated keywords.
             </p>
+
           </article>
 
           <article class="arch-node">
-            <div class="icon">✦</div>
-            <h3>Diversity Reranking</h3>
+
+            <div class="icon">
+              ✦
+            </div>
+
+            <h3>
+              Diversity Reranking
+            </h3>
+
             <p>
               Reduces repetition, tracks previously shown titles, and
               promotes fresh alternatives across searches.
             </p>
+
           </article>
 
         </div>
@@ -942,26 +1141,41 @@ a{color:inherit}
       <div class="arch-flow">
 
         <div class="arch-step">
-          <strong>1. Understand</strong>
+
+          <strong>
+            1. Understand
+          </strong>
+
           <span>
             Parse every viewer's natural-language taste into structured intent.
           </span>
+
         </div>
 
         <div class="arch-step">
-          <strong>2. Protect + Rank</strong>
+
+          <strong>
+            2. Protect + Rank
+          </strong>
+
           <span>
             Enforce genuine constraints while preserving flexibility for
             subjective preferences.
           </span>
+
         </div>
 
         <div class="arch-step">
-          <strong>3. Explain</strong>
+
+          <strong>
+            3. Explain
+          </strong>
+
           <span>
             Return recommendations that make sense for the whole room and
             explain why they work.
           </span>
+
         </div>
 
       </div>
@@ -969,16 +1183,24 @@ a{color:inherit}
     </div>
 
   </div>
+
 </section>
 
+<!-- ENGINEERING -->
+
 <section class="section">
+
   <div class="wrap two">
 
     <article class="card reveal">
 
-      <p class="eyebrow">05 · Engineering</p>
+      <p class="eyebrow">
+        05 · Engineering
+      </p>
 
-      <h2>Challenges solved</h2>
+      <h2>
+        Challenges solved
+      </h2>
 
       <ul class="list">
         <li>Preventing soft preferences from collapsing candidate pools</li>
@@ -994,9 +1216,13 @@ a{color:inherit}
 
     <article class="card reveal">
 
-      <p class="eyebrow">06 · Reflection</p>
+      <p class="eyebrow">
+        06 · Reflection
+      </p>
 
-      <h2>What I learned</h2>
+      <h2>
+        What I learned
+      </h2>
 
       <p>
         CommonGround reinforced an important design principle: AI should
@@ -1013,16 +1239,24 @@ a{color:inherit}
     </article>
 
   </div>
+
 </section>
 
+<!-- ROADMAP -->
+
 <section class="section">
+
   <div class="wrap">
 
     <div class="card reveal">
 
-      <p class="eyebrow">07 · Roadmap</p>
+      <p class="eyebrow">
+        07 · Roadmap
+      </p>
 
-      <h2>Future improvements</h2>
+      <h2>
+        Future improvements
+      </h2>
 
       <ul class="list">
         <li>Streaming-provider availability</li>
@@ -1038,15 +1272,22 @@ a{color:inherit}
     </div>
 
   </div>
+
 </section>
+
+<!-- BOTTOM LIVE DEMO CTA -->
 
 <section class="wrap">
 
   <div class="cta reveal">
 
-    <p class="eyebrow">Try CommonGround</p>
+    <p class="eyebrow">
+      Try CommonGround
+    </p>
 
-    <h2>What is the strongest choice for this group?</h2>
+    <h2>
+      What is the strongest choice for this group?
+    </h2>
 
     <p>
       Create a room, add everyone's preferences, and let CommonGround
@@ -1056,7 +1297,7 @@ a{color:inherit}
     <div class="cta-actions">
 
       <a
-        class="btn btn-demo"
+        class="btn demo-btn"
         href="https://commonground-tau.vercel.app/"
         target="_blank"
         rel="noopener noreferrer"
@@ -1065,7 +1306,7 @@ a{color:inherit}
       </a>
 
       <a
-        class="btn btn-outline"
+        class="btn projects-btn"
         href="projects.html"
       >
         View all projects →
@@ -1095,17 +1336,11 @@ a{color:inherit}
 
 </footer>
 
-<!-- Cloudflare Web Analytics -->
-<script
-  defer
-  src="https://static.cloudflareinsights.com/beacon.min.js"
-  data-cf-beacon='{"token":"f53237763bf641c59034679ae8616a53"}'>
-</script>
-<!-- End Cloudflare Web Analytics -->
-
 <script>
 function page(){
+
   return{
+
     dark:false,
 
     init(){
@@ -1115,10 +1350,10 @@ function page(){
 
       this.$watch(
         'dark',
-        v =>
+        value =>
           localStorage.setItem(
             'theme',
-            v ? 'dark' : 'light'
+            value ? 'dark' : 'light'
           )
       );
 
@@ -1128,14 +1363,23 @@ function page(){
       const observer =
         new IntersectionObserver(
           entries => {
+
             entries.forEach(entry => {
+
               if(entry.isIntersecting){
+
                 entry.target.classList.add('in');
+
                 observer.unobserve(entry.target);
+
               }
+
             });
+
           },
-          {threshold:.1}
+          {
+            threshold:.1
+          }
         );
 
       document
@@ -1144,14 +1388,27 @@ function page(){
           element =>
             observer.observe(element)
         );
+
     },
 
     toggle(){
+
       this.dark = !this.dark;
+
     }
+
   };
+
 }
 </script>
+
+<!-- Cloudflare Web Analytics -->
+<script
+  defer
+  src="https://static.cloudflareinsights.com/beacon.min.js"
+  data-cf-beacon='{"token":"f53237763bf641c59034679ae8616a53"}'>
+</script>
+<!-- End Cloudflare Web Analytics -->
 
 </body>
 </html>
