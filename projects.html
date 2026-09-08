@@ -48,7 +48,11 @@
     *, *::before, *::after { box-sizing: border-box; }
     html, body { font-family: 'DM Sans', sans-serif; }
     h1, h2, h3, h4, h5, h6 { font-family: 'Cormorant Garamond', serif; }
-    body { transition: background-color .3s ease, color .3s ease; }
+
+    body {
+      transition: background-color .3s ease, color .3s ease;
+    }
+
     body::before {
       content: '';
       position: fixed;
@@ -58,22 +62,34 @@
       opacity: .28;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");
     }
+
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: #B6924C; border-radius: 99px; }
+
     [x-cloak] { display: none !important; }
 
     .reveal {
       opacity: 0;
       transform: translateY(24px);
-      transition: opacity .6s cubic-bezier(.4,0,.2,1), transform .6s cubic-bezier(.4,0,.2,1);
+      transition:
+        opacity .6s cubic-bezier(.4,0,.2,1),
+        transform .6s cubic-bezier(.4,0,.2,1);
     }
-    .reveal.in { opacity: 1; transform: none; }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
     .d1 { transition-delay: .08s; }
     .d2 { transition-delay: .16s; }
     .d3 { transition-delay: .24s; }
 
-    .nav-link { position: relative; }
+    .nav-link {
+      position: relative;
+    }
+
     .nav-link::after {
       content: '';
       position: absolute;
@@ -84,7 +100,10 @@
       background: currentColor;
       transition: width .22s ease;
     }
-    .nav-link:hover::after { width: 100%; }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
 
     .glass-nav {
       background: rgba(246, 241, 232, .76);
@@ -92,36 +111,60 @@
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
     }
+
     .dark .glass-nav {
       background: rgba(18, 26, 22, .74);
       border-color: rgba(212, 182, 106, .12);
     }
 
     .project-card {
-      transition: transform .32s cubic-bezier(.4,0,.2,1), border-color .22s ease, box-shadow .32s ease;
+      transition:
+        transform .32s cubic-bezier(.4,0,.2,1),
+        border-color .22s ease,
+        box-shadow .32s ease;
     }
+
     .project-card:hover {
       transform: translateY(-7px);
       box-shadow: 0 24px 60px rgba(31, 48, 39, .14);
     }
+
     .dark .project-card:hover {
       box-shadow: 0 24px 60px rgba(0, 0, 0, .32);
     }
 
-    .image-wrap { overflow: hidden; background: #e8e2d8; }
+    .image-wrap {
+      overflow: hidden;
+      background: #e8e2d8;
+    }
+
     .image-wrap img {
       width: 100%;
       height: 100%;
       display: block;
       object-fit: cover;
-      transition: transform .6s cubic-bezier(.4,0,.2,1), filter .4s ease;
+      transition:
+        transform .6s cubic-bezier(.4,0,.2,1),
+        filter .4s ease;
     }
-    .project-card:hover .image-wrap img { transform: scale(1.035); }
 
-    .filter-pill { transition: all .22s ease; }
-    .filter-pill:hover { transform: translateY(-1px); }
+    .project-card:hover .image-wrap img {
+      transform: scale(1.035);
+    }
 
-    .shine { position: relative; overflow: hidden; }
+    .filter-pill {
+      transition: all .22s ease;
+    }
+
+    .filter-pill:hover {
+      transform: translateY(-1px);
+    }
+
+    .shine {
+      position: relative;
+      overflow: hidden;
+    }
+
     .shine::after {
       content: '';
       position: absolute;
@@ -133,13 +176,18 @@
       transform: skewX(-20deg);
       transition: left .5s cubic-bezier(.4,0,.2,1);
     }
-    .shine:hover::after { left: 165%; }
+
+    .shine:hover::after {
+      left: 165%;
+    }
   </style>
 </head>
 
 <body class="bg-cream dark:bg-[#101713] text-ink dark:text-[#F2EEE5] font-body antialiased">
+
   <header class="fixed inset-x-0 top-0 z-50 px-4 pt-4">
     <nav class="glass-nav max-w-6xl mx-auto h-16 px-5 md:px-6 rounded-2xl flex items-center justify-between shadow-soft" aria-label="Main navigation">
+
       <a href="index.html" class="font-display font-bold text-2xl tracking-tight text-forest dark:text-[#F4EFE6]">
         ayu<span class="text-gold">sh</span>
       </a>
@@ -154,23 +202,51 @@
       </ul>
 
       <div class="flex items-center gap-3">
-        <button @click="dark = !dark" class="w-10 h-10 rounded-full border border-gold/20 dark:border-gold/20 bg-white/60 dark:bg-white/5 flex items-center justify-center hover:border-gold transition-colors" :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'">
-          <svg x-show="!dark" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-          <svg x-show="dark" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+
+        <button
+          @click="dark = !dark"
+          class="w-10 h-10 rounded-full border border-gold/20 dark:border-gold/20 bg-white/60 dark:bg-white/5 flex items-center justify-center hover:border-gold transition-colors"
+          :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'"
+        >
+          <svg x-show="!dark" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+          </svg>
+
+          <svg x-show="dark" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/>
+          </svg>
         </button>
 
-        <a href="index.html#contact" class="hidden md:inline-flex shine items-center gap-2 rounded-full bg-forest dark:bg-gold text-white dark:text-[#132019] px-5 py-2.5 text-sm font-medium hover:bg-forest-light dark:hover:bg-gold-light transition-colors">
+        <a
+          href="index.html#contact"
+          class="hidden md:inline-flex shine items-center gap-2 rounded-full bg-forest dark:bg-gold text-white dark:text-[#132019] px-5 py-2.5 text-sm font-medium hover:bg-forest-light dark:hover:bg-gold-light transition-colors"
+        >
           Contact me →
         </a>
 
-        <button @click="mobileMenu = !mobileMenu" class="md:hidden w-10 h-10 rounded-full border border-gold/20 flex items-center justify-center" aria-label="Toggle menu">
-          <svg x-show="!mobileMenu" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-          <svg x-show="mobileMenu" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        <button
+          @click="mobileMenu = !mobileMenu"
+          class="md:hidden w-10 h-10 rounded-full border border-gold/20 flex items-center justify-center"
+          aria-label="Toggle menu"
+        >
+          <svg x-show="!mobileMenu" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+
+          <svg x-show="mobileMenu" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
         </button>
+
       </div>
     </nav>
 
-    <div x-show="mobileMenu" x-cloak x-transition class="glass-nav max-w-6xl mx-auto mt-2 rounded-2xl md:hidden shadow-soft">
+    <div
+      x-show="mobileMenu"
+      x-cloak
+      x-transition
+      class="glass-nav max-w-6xl mx-auto mt-2 rounded-2xl md:hidden shadow-soft"
+    >
       <ul class="px-6 py-5 flex flex-col gap-4 text-sm font-medium">
         <li><a href="index.html#services" @click="mobileMenu=false" class="block">Skills</a></li>
         <li><a href="projects.html" class="block text-gold">Work</a></li>
@@ -183,132 +259,260 @@
   </header>
 
   <main class="relative z-10">
+
     <section class="relative pt-40 pb-16 overflow-hidden">
+
       <div class="absolute -top-24 right-0 w-[420px] h-[420px] rounded-full bg-gold/10 blur-3xl pointer-events-none"></div>
       <div class="absolute top-32 -left-24 w-80 h-80 rounded-full bg-forest/10 dark:bg-gold/5 blur-3xl pointer-events-none"></div>
 
       <div class="max-w-6xl mx-auto px-6 relative z-10">
+
         <div class="max-w-3xl">
+
           <div class="reveal inline-flex items-center gap-2 rounded-full border border-gold/25 bg-white/50 dark:bg-white/5 px-4 py-2 mb-6">
             <span class="w-2 h-2 rounded-full bg-gold"></span>
-            <span class="text-xs font-semibold tracking-[0.18em] uppercase text-forest/70 dark:text-[#F4EFE6]/70">Selected Engineering Work</span>
+            <span class="text-xs font-semibold tracking-[0.18em] uppercase text-forest/70 dark:text-[#F4EFE6]/70">
+              Selected Engineering Work
+            </span>
           </div>
 
           <h1 class="reveal d1 font-display font-bold text-5xl md:text-7xl leading-[.98] text-forest dark:text-[#F4EFE6] mb-6">
-            Projects built at the intersection of <span class="text-gold">AI and software</span>.
+            Projects built at the intersection of
+            <span class="text-gold">AI and software</span>.
           </h1>
 
           <p class="reveal d2 text-lg md:text-xl leading-relaxed text-forest/65 dark:text-[#F4EFE6]/65 max-w-2xl">
-            A collection of AI applications, automation systems, machine-learning tools, computer-vision projects, and full-stack products designed to solve practical problems.
+            A collection of AI applications, automation systems, machine-learning tools,
+            computer-vision projects, and full-stack products designed to solve practical problems.
           </p>
+
         </div>
 
         <div class="reveal d3 mt-10 flex flex-wrap items-center gap-3">
+
           <template x-for="option in filterOptions" :key="option.value">
+
             <button
               @click="filter = option.value"
               class="filter-pill rounded-full border px-4 py-2 text-sm font-medium"
               :class="filter === option.value
                 ? 'bg-forest text-white border-forest dark:bg-gold dark:text-[#142019] dark:border-gold shadow-card'
                 : 'bg-white/60 dark:bg-white/5 text-forest/70 dark:text-[#F4EFE6]/70 border-gold/20 hover:border-gold hover:text-forest dark:hover:text-white'"
-              x-text="option.label">
+              x-text="option.label"
+            >
             </button>
+
           </template>
+
         </div>
+
       </div>
     </section>
 
     <section class="pb-24">
+
       <div class="max-w-6xl mx-auto px-6">
+
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+
           <template x-for="project in filteredProjects" :key="project.id">
+
             <article class="project-card reveal group rounded-[1.6rem] overflow-hidden bg-paper dark:bg-[#17211B] border border-gold/15 dark:border-gold/10">
+
               <a :href="project.url" class="block image-wrap h-56 relative">
-                <img :src="project.img" :alt="project.title" loading="lazy" />
+
+                <img
+                  :src="project.img"
+                  :alt="project.title"
+                  loading="lazy"
+                />
+
                 <div class="absolute inset-0 bg-gradient-to-t from-[#112019]/45 via-transparent to-transparent"></div>
+
                 <div class="absolute top-4 left-4 flex flex-wrap gap-2">
-                  <span class="rounded-full bg-[#F9F5EC]/90 text-forest text-xs font-semibold px-3 py-1.5 backdrop-blur" x-text="project.categoryLabel"></span>
-                  <span class="rounded-full px-3 py-1.5 text-xs font-semibold backdrop-blur"
-                    :class="project.status === 'Live' ? 'bg-emerald-100/90 text-emerald-800' : 'bg-amber-100/90 text-amber-800'"
-                    x-text="project.status">
+
+                  <span
+                    class="rounded-full bg-[#F9F5EC]/90 text-forest text-xs font-semibold px-3 py-1.5 backdrop-blur"
+                    x-text="project.categoryLabel"
+                  >
                   </span>
+
+                  <span
+                    class="rounded-full px-3 py-1.5 text-xs font-semibold backdrop-blur"
+                    :class="project.status === 'Live'
+                      ? 'bg-emerald-100/90 text-emerald-800'
+                      : 'bg-amber-100/90 text-amber-800'"
+                    x-text="project.status"
+                  >
+                  </span>
+
                 </div>
+
               </a>
 
               <div class="p-7">
+
                 <div class="flex items-center justify-between gap-4 mb-4">
-                  <span class="text-xs uppercase tracking-[.18em] text-gold font-semibold" x-text="project.year"></span>
-                  <span class="text-xs text-forest/45 dark:text-[#F4EFE6]/45" x-text="project.type"></span>
+
+                  <span
+                    class="text-xs uppercase tracking-[.18em] text-gold font-semibold"
+                    x-text="project.year"
+                  >
+                  </span>
+
+                  <span
+                    class="text-xs text-forest/45 dark:text-[#F4EFE6]/45"
+                    x-text="project.type"
+                  >
+                  </span>
+
                 </div>
 
                 <a :href="project.url">
-                  <h2 class="font-display font-bold text-2xl leading-tight text-forest dark:text-[#F4EFE6] mb-3 group-hover:text-gold transition-colors" x-text="project.title"></h2>
+                  <h2
+                    class="font-display font-bold text-2xl leading-tight text-forest dark:text-[#F4EFE6] mb-3 group-hover:text-gold transition-colors"
+                    x-text="project.title"
+                  >
+                  </h2>
                 </a>
 
-                <p class="text-sm leading-7 text-forest/62 dark:text-[#F4EFE6]/62 mb-5" x-text="project.desc"></p>
+                <p
+                  class="text-sm leading-7 text-forest/62 dark:text-[#F4EFE6]/62 mb-5"
+                  x-text="project.desc"
+                >
+                </p>
 
                 <div class="flex flex-wrap gap-2 mb-6">
+
                   <template x-for="tag in project.tags" :key="tag">
-                    <span class="text-xs rounded-full bg-cream dark:bg-white/5 border border-gold/10 px-3 py-1.5 text-forest/65 dark:text-[#F4EFE6]/65" x-text="tag"></span>
+
+                    <span
+                      class="text-xs rounded-full bg-cream dark:bg-white/5 border border-gold/10 px-3 py-1.5 text-forest/65 dark:text-[#F4EFE6]/65"
+                      x-text="tag"
+                    >
+                    </span>
+
                   </template>
+
                 </div>
 
                 <div class="flex items-center justify-between gap-4 pt-5 border-t border-gold/10">
-                  <a :href="project.url" class="nav-link inline-flex items-center gap-2 text-sm font-semibold text-forest dark:text-[#F4EFE6] hover:text-gold">
+
+                  <a
+                    :href="project.url"
+                    class="nav-link inline-flex items-center gap-2 text-sm font-semibold text-forest dark:text-[#F4EFE6] hover:text-gold"
+                  >
                     View project →
                   </a>
-                  <a x-show="project.liveUrl" :href="project.liveUrl" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-gold hover:text-gold-light">
+
+                  <a
+                    x-show="project.liveUrl"
+                    :href="project.liveUrl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-xs font-semibold text-gold hover:text-gold-light"
+                  >
                     Live demo ↗
                   </a>
+
                 </div>
+
               </div>
+
             </article>
+
           </template>
+
         </div>
 
-        <div x-show="filteredProjects.length === 0" x-cloak class="text-center py-24">
-          <p class="font-display text-3xl text-forest dark:text-[#F4EFE6] mb-2">Nothing here yet.</p>
-          <p class="text-sm text-forest/55 dark:text-[#F4EFE6]/55">Try another project category.</p>
+        <div
+          x-show="filteredProjects.length === 0"
+          x-cloak
+          class="text-center py-24"
+        >
+          <p class="font-display text-3xl text-forest dark:text-[#F4EFE6] mb-2">
+            Nothing here yet.
+          </p>
+
+          <p class="text-sm text-forest/55 dark:text-[#F4EFE6]/55">
+            Try another project category.
+          </p>
         </div>
+
       </div>
     </section>
 
     <section class="pb-24">
+
       <div class="max-w-6xl mx-auto px-6">
+
         <div class="relative overflow-hidden rounded-[2rem] bg-forest dark:bg-[#17211B] border border-gold/15 px-8 py-12 md:px-14 md:py-16 shadow-soft">
+
           <div class="absolute -top-24 -right-24 w-72 h-72 bg-gold/20 rounded-full blur-3xl"></div>
+
           <div class="relative z-10 grid md:grid-cols-[1fr_auto] gap-8 items-center">
+
             <div>
-              <p class="text-xs uppercase tracking-[.2em] text-gold mb-4 font-semibold">Open to opportunities</p>
-              <h2 class="font-display font-bold text-4xl md:text-5xl text-white leading-tight mb-4">Have a role or project in mind?</h2>
-              <p class="text-white/65 max-w-2xl leading-relaxed">I am open to AI/ML, automation, backend, full-stack software engineering, and internship opportunities.</p>
+
+              <p class="text-xs uppercase tracking-[.2em] text-gold mb-4 font-semibold">
+                Open to opportunities
+              </p>
+
+              <h2 class="font-display font-bold text-4xl md:text-5xl text-white leading-tight mb-4">
+                Have a role or project in mind?
+              </h2>
+
+              <p class="text-white/65 max-w-2xl leading-relaxed">
+                I am open to AI/ML, automation, backend, full-stack software engineering,
+                and internship opportunities.
+              </p>
+
             </div>
 
-            <a href="index.html#contact" class="shine inline-flex items-center justify-center rounded-full bg-gold text-[#132019] px-7 py-3.5 font-semibold hover:bg-gold-light transition-colors whitespace-nowrap">
+            <a
+              href="index.html#contact"
+              class="shine inline-flex items-center justify-center rounded-full bg-gold text-[#132019] px-7 py-3.5 font-semibold hover:bg-gold-light transition-colors whitespace-nowrap"
+            >
               Start a conversation →
             </a>
+
           </div>
+
         </div>
+
       </div>
     </section>
+
   </main>
 
   <footer class="relative z-10 border-t border-gold/10">
+
     <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-sm text-forest/50 dark:text-[#F4EFE6]/50">© <span id="year"></span> Ayush Bambhroliya. All rights reserved.</p>
-      <p class="text-xs text-forest/45 dark:text-[#F4EFE6]/45">Designed and built by Ayush Bambhroliya</p>
+
+      <p class="text-sm text-forest/50 dark:text-[#F4EFE6]/50">
+        © <span id="year"></span> Ayush Bambhroliya. All rights reserved.
+      </p>
+
+      <p class="text-xs text-forest/45 dark:text-[#F4EFE6]/45">
+        Designed and built by Ayush Bambhroliya
+      </p>
+
     </div>
+
   </footer>
 
   <script>
+
     function projectsPage() {
+
       return {
+
         dark: false,
         mobileMenu: false,
         filter: 'all',
 
         filterOptions: [
-          { value: 'all', label: 'All (7)' },
+          { value: 'all', label: 'All (8)' },
           { value: 'automation', label: 'AI Automation' },
           { value: 'ai-apps', label: 'AI Apps' },
           { value: 'vision', label: 'Computer Vision' },
@@ -316,6 +520,22 @@
         ],
 
         allProjects: [
+
+          {
+            id: 8,
+            title: 'CommonGround',
+            category: 'ai-apps',
+            categoryLabel: 'AI Apps',
+            type: 'AI Recommendation System',
+            tags: ['Next.js', 'FastAPI', 'OpenAI', 'TMDB'],
+            year: '2026',
+            status: 'Case Study',
+            desc: 'A full-stack AI group entertainment recommendation platform that interprets natural-language preferences, protects genuine deal-breakers, and ranks the strongest movie or TV choice for the group as a whole.',
+            img: 'commonground-screenshot.png',
+            url: 'commonground.html',
+            liveUrl: ''
+          },
+
           {
             id: 1,
             title: 'Maps: Goal Planner',
@@ -330,6 +550,7 @@
             url: 'maps-goal-planner.html',
             liveUrl: 'https://maps-goal-planner-rjzi-doibbtpo8-ayushs-projects-f5ec9f23.vercel.app/'
           },
+
           {
             id: 2,
             title: 'AgentFlow',
@@ -344,6 +565,7 @@
             url: 'multi-agent-task-runner.html',
             liveUrl: 'https://agentflow-jyzejsrsrgqcqmzwh5q4jj.streamlit.app/'
           },
+
           {
             id: 3,
             title: 'ApplyBuddy-AI',
@@ -358,6 +580,7 @@
             url: 'applybuddy-ai.html',
             liveUrl: 'https://applybuddy-ai-ajvybt6ddrjht5mkn5mtrz.streamlit.app/#apply-buddy-ai'
           },
+
           {
             id: 4,
             title: 'Resume-Meets-Job',
@@ -372,6 +595,7 @@
             url: 'resume-meets-job.html',
             liveUrl: 'https://abambhroliya007-resume-meets-job-app-58ufpd.streamlit.app/'
           },
+
           {
             id: 5,
             title: 'AI Workflow Automation System',
@@ -386,6 +610,7 @@
             url: 'ai-workflow-automation.html',
             liveUrl: ''
           },
+
           {
             id: 6,
             title: 'Golf Swing Analyzer',
@@ -400,6 +625,7 @@
             url: 'golf-swing-analyzer.html',
             liveUrl: ''
           },
+
           {
             id: 7,
             title: 'ML Stock Analysis Assistant',
@@ -414,38 +640,91 @@
             url: 'ml-stock-analysis-assistant.html',
             liveUrl: 'https://ml-stock-assistant-5hu7gkpha2p6n52ayppwny.streamlit.app/'
           }
+
         ],
 
         get filteredProjects() {
-          if (this.filter === 'all') return this.allProjects;
-          return this.allProjects.filter(project => project.category === this.filter);
+
+          if (this.filter === 'all') {
+            return this.allProjects;
+          }
+
+          return this.allProjects.filter(
+            project => project.category === this.filter
+          );
+
         },
 
         init() {
-          this.dark = localStorage.getItem('theme') === 'dark' ||
-            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+          this.dark =
+            localStorage.getItem('theme') === 'dark' ||
+            (
+              !localStorage.getItem('theme') &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches
+            );
 
           this.$watch('dark', value => {
-            localStorage.setItem('theme', value ? 'dark' : 'light');
+            localStorage.setItem(
+              'theme',
+              value ? 'dark' : 'light'
+            );
           });
 
           this.$nextTick(() => {
-            const observer = new IntersectionObserver(entries => {
-              entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                  entry.target.classList.add('in');
-                  observer.unobserve(entry.target);
-                }
-              });
-            }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
-            document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+            const observer =
+              new IntersectionObserver(
+                entries => {
+
+                  entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                      entry.target.classList.add('in');
+
+                      observer.unobserve(
+                        entry.target
+                      );
+
+                    }
+
+                  });
+
+                },
+                {
+                  threshold: 0.08,
+                  rootMargin: '0px 0px -30px 0px'
+                }
+              );
+
+            document
+              .querySelectorAll('.reveal')
+              .forEach(
+                element =>
+                  observer.observe(element)
+              );
+
           });
 
-          document.getElementById('year').textContent = new Date().getFullYear();
+          document.getElementById('year').textContent =
+            new Date().getFullYear();
+
         }
+
       };
+
     }
+
   </script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token":"f53237763bf641c59034679ae8616a53"}'>
+  </script>
+  <!-- End Cloudflare Web Analytics -->
+
 </body>
 </html>
