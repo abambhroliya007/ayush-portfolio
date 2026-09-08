@@ -77,6 +77,7 @@ a{color:inherit}
 }
 
 /* NAV */
+
 .nav{
   position:fixed;
   top:14px;
@@ -131,6 +132,7 @@ a{color:inherit}
 }
 
 /* HERO */
+
 .hero{
   padding:150px 0 64px;
   position:relative;
@@ -182,6 +184,7 @@ a{color:inherit}
 .btn{
   display:inline-flex;
   align-items:center;
+  justify-content:center;
   gap:8px;
   padding:13px 21px;
   border-radius:999px;
@@ -189,6 +192,15 @@ a{color:inherit}
   font-size:14px;
   font-weight:700;
   border:1px solid var(--green);
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    border-color .25s ease,
+    color .25s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
 }
 
 .primary{
@@ -196,9 +208,18 @@ a{color:inherit}
   color:var(--paper);
 }
 
+.primary:hover{
+  background:var(--green2);
+}
+
 .secondary{
   background:transparent;
   color:var(--green);
+}
+
+.secondary:hover{
+  border-color:var(--gold);
+  color:var(--gold);
 }
 
 .meta{
@@ -225,6 +246,7 @@ a{color:inherit}
 }
 
 /* IMAGE */
+
 .shot{
   margin:0 auto 64px;
 }
@@ -247,6 +269,7 @@ a{color:inherit}
 }
 
 /* STATS */
+
 .stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -268,6 +291,7 @@ a{color:inherit}
 }
 
 /* SECTIONS */
+
 .section{
   padding:0 0 88px;
 }
@@ -324,6 +348,7 @@ a{color:inherit}
 }
 
 /* ARCHITECTURE */
+
 .arch-shell{
   position:relative;
   overflow:hidden;
@@ -480,6 +505,7 @@ a{color:inherit}
 }
 
 /* CTA */
+
 .cta{
   padding:54px;
   border-radius:32px;
@@ -497,17 +523,36 @@ a{color:inherit}
 
 .cta p{
   color:color-mix(in srgb,var(--paper) 72%,transparent);
-  max-width:620px;
+  max-width:650px;
   margin:0 auto 26px;
 }
 
-.cta .btn{
+.cta-actions{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.cta .btn-demo{
   border-color:var(--gold);
   background:var(--gold);
   color:#18231f;
 }
 
+.cta .btn-outline{
+  background:transparent;
+  color:var(--paper);
+  border-color:color-mix(in srgb,var(--paper) 40%,transparent);
+}
+
+.cta .btn-outline:hover{
+  color:var(--gold);
+  border-color:var(--gold);
+}
+
 /* FOOTER */
+
 .footer{
   border-top:1px solid var(--line);
   padding:28px 0 40px;
@@ -623,16 +668,24 @@ a{color:inherit}
     </p>
 
     <div class="actions">
-      <span class="btn primary" style="cursor:default">
-        Case Study
-      </span>
+
+      <a
+        class="btn primary"
+        href="https://commonground-tau.vercel.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        🚀 Live Demo
+      </a>
 
       <a class="btn secondary" href="projects.html">
         Explore all projects
       </a>
+
     </div>
 
     <div class="meta reveal">
+
       <div>
         <small>Role</small>
         <strong>Full-Stack AI Developer</strong>
@@ -647,6 +700,7 @@ a{color:inherit}
         <small>Built with</small>
         <strong>Next.js, FastAPI, OpenAI, TMDB</strong>
       </div>
+
     </div>
 
   </div>
@@ -662,6 +716,7 @@ a{color:inherit}
 </section>
 
 <section class="stats wrap">
+
   <div class="card stat reveal">
     <strong>6</strong>
     <span>Supported participants</span>
@@ -676,12 +731,14 @@ a{color:inherit}
     <strong>AI</strong>
     <span>Group-fit reasoning</span>
   </div>
+
 </section>
 
 <section class="section">
   <div class="wrap two">
 
     <article class="card reveal">
+
       <p class="eyebrow">01 · The problem</p>
 
       <h2>Recommendations get harder in groups</h2>
@@ -693,9 +750,11 @@ a{color:inherit}
         horror, another may care about runtime, while someone else
         may prioritize strong characters or critical acclaim.
       </p>
+
     </article>
 
     <article class="card reveal">
+
       <p class="eyebrow">02 · The solution</p>
 
       <h2>Find the overlap without ignoring deal-breakers</h2>
@@ -706,6 +765,7 @@ a{color:inherit}
         from soft preferences, retrieves real candidates, and ranks the
         strongest compromise for the entire room.
       </p>
+
     </article>
 
   </div>
@@ -721,6 +781,7 @@ a{color:inherit}
     <div class="two">
 
       <div class="card reveal">
+
         <ul class="list">
           <li>Movie Rooms and Show Rooms</li>
           <li>Natural-language preference input</li>
@@ -732,6 +793,7 @@ a{color:inherit}
           <li>Alternative recommendations</li>
           <li>Diversity and novelty reranking</li>
         </ul>
+
       </div>
 
       <div class="card reveal">
@@ -979,28 +1041,46 @@ a{color:inherit}
 </section>
 
 <section class="wrap">
+
   <div class="cta reveal">
 
-    <p class="eyebrow">The idea</p>
+    <p class="eyebrow">Try CommonGround</p>
 
     <h2>What is the strongest choice for this group?</h2>
 
     <p>
-      CommonGround explores a recommendation problem that goes beyond
-      individual personalization by reasoning about consensus, conflicts,
-      constraints, and compromise across multiple people.
+      Create a room, add everyone's preferences, and let CommonGround
+      find the strongest movie or TV recommendation for the group.
     </p>
 
-    <a class="btn" href="projects.html">
-      View all projects →
-    </a>
+    <div class="cta-actions">
+
+      <a
+        class="btn btn-demo"
+        href="https://commonground-tau.vercel.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        🚀 Open Live Demo
+      </a>
+
+      <a
+        class="btn btn-outline"
+        href="projects.html"
+      >
+        View all projects →
+      </a>
+
+    </div>
 
   </div>
+
 </section>
 
 </main>
 
 <footer class="footer">
+
   <div class="wrap foot">
 
     <span>
@@ -1012,6 +1092,7 @@ a{color:inherit}
     </span>
 
   </div>
+
 </footer>
 
 <!-- Cloudflare Web Analytics -->

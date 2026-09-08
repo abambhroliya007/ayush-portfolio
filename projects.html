@@ -185,546 +185,556 @@
 
 <body class="bg-cream dark:bg-[#101713] text-ink dark:text-[#F2EEE5] font-body antialiased">
 
-  <header class="fixed inset-x-0 top-0 z-50 px-4 pt-4">
-    <nav class="glass-nav max-w-6xl mx-auto h-16 px-5 md:px-6 rounded-2xl flex items-center justify-between shadow-soft" aria-label="Main navigation">
+<header class="fixed inset-x-0 top-0 z-50 px-4 pt-4">
 
-      <a href="index.html" class="font-display font-bold text-2xl tracking-tight text-forest dark:text-[#F4EFE6]">
-        ayu<span class="text-gold">sh</span>
+  <nav class="glass-nav max-w-6xl mx-auto h-16 px-5 md:px-6 rounded-2xl flex items-center justify-between shadow-soft" aria-label="Main navigation">
+
+    <a href="index.html" class="font-display font-bold text-2xl tracking-tight text-forest dark:text-[#F4EFE6]">
+      ayu<span class="text-gold">sh</span>
+    </a>
+
+    <ul class="hidden md:flex items-center gap-8 text-sm font-medium" role="list">
+      <li><a href="index.html#services" class="nav-link text-forest/70 dark:text-[#F4EFE6]/70 hover:text-forest dark:hover:text-white">Skills</a></li>
+      <li><a href="projects.html" class="nav-link text-gold">Work</a></li>
+      <li><a href="index.html#about" class="nav-link text-forest/70 dark:text-[#F4EFE6]/70 hover:text-forest dark:hover:text-white">About</a></li>
+      <li><a href="index.html#reviews" class="nav-link text-forest/70 dark:text-[#F4EFE6]/70 hover:text-forest dark:hover:text-white">Experience</a></li>
+      <li><a href="index.html#blog" class="nav-link text-forest/70 dark:text-[#F4EFE6]/70 hover:text-forest dark:hover:text-white">Education</a></li>
+      <li><a href="index.html#contact" class="nav-link text-forest/70 dark:text-[#F4EFE6]/70 hover:text-forest dark:hover:text-white">Contact</a></li>
+    </ul>
+
+    <div class="flex items-center gap-3">
+
+      <button
+        @click="dark = !dark"
+        class="w-10 h-10 rounded-full border border-gold/20 dark:border-gold/20 bg-white/60 dark:bg-white/5 flex items-center justify-center hover:border-gold transition-colors"
+        :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'"
+      >
+        <svg x-show="!dark" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+
+        <svg x-show="dark" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/>
+        </svg>
+      </button>
+
+      <a
+        href="index.html#contact"
+        class="hidden md:inline-flex shine items-center gap-2 rounded-full bg-forest dark:bg-gold text-white dark:text-[#132019] px-5 py-2.5 text-sm font-medium hover:bg-forest-light dark:hover:bg-gold-light transition-colors"
+      >
+        Contact me →
       </a>
 
-      <ul class="hidden md:flex items-center gap-8 text-sm font-medium" role="list">
-        <li><a href="index.html#services" class="nav-link text-forest/70 dark:text-[#F4EFE6]/70 hover:text-forest dark:hover:text-white">Skills</a></li>
-        <li><a href="projects.html" class="nav-link text-gold">Work</a></li>
-        <li><a href="index.html#about" class="nav-link text-forest/70 dark:text-[#F4EFE6]/70 hover:text-forest dark:hover:text-white">About</a></li>
-        <li><a href="index.html#reviews" class="nav-link text-forest/70 dark:text-[#F4EFE6]/70 hover:text-forest dark:hover:text-white">Experience</a></li>
-        <li><a href="index.html#blog" class="nav-link text-forest/70 dark:text-[#F4EFE6]/70 hover:text-forest dark:hover:text-white">Education</a></li>
-        <li><a href="index.html#contact" class="nav-link text-forest/70 dark:text-[#F4EFE6]/70 hover:text-forest dark:hover:text-white">Contact</a></li>
-      </ul>
+      <button
+        @click="mobileMenu = !mobileMenu"
+        class="md:hidden w-10 h-10 rounded-full border border-gold/20 flex items-center justify-center"
+        aria-label="Toggle menu"
+      >
+        <svg x-show="!mobileMenu" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
 
-      <div class="flex items-center gap-3">
+        <svg x-show="mobileMenu" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
 
-        <button
-          @click="dark = !dark"
-          class="w-10 h-10 rounded-full border border-gold/20 dark:border-gold/20 bg-white/60 dark:bg-white/5 flex items-center justify-center hover:border-gold transition-colors"
-          :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'"
-        >
-          <svg x-show="!dark" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
-          </svg>
-
-          <svg x-show="dark" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/>
-          </svg>
-        </button>
-
-        <a
-          href="index.html#contact"
-          class="hidden md:inline-flex shine items-center gap-2 rounded-full bg-forest dark:bg-gold text-white dark:text-[#132019] px-5 py-2.5 text-sm font-medium hover:bg-forest-light dark:hover:bg-gold-light transition-colors"
-        >
-          Contact me →
-        </a>
-
-        <button
-          @click="mobileMenu = !mobileMenu"
-          class="md:hidden w-10 h-10 rounded-full border border-gold/20 flex items-center justify-center"
-          aria-label="Toggle menu"
-        >
-          <svg x-show="!mobileMenu" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-
-          <svg x-show="mobileMenu" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-        </button>
-
-      </div>
-    </nav>
-
-    <div
-      x-show="mobileMenu"
-      x-cloak
-      x-transition
-      class="glass-nav max-w-6xl mx-auto mt-2 rounded-2xl md:hidden shadow-soft"
-    >
-      <ul class="px-6 py-5 flex flex-col gap-4 text-sm font-medium">
-        <li><a href="index.html#services" @click="mobileMenu=false" class="block">Skills</a></li>
-        <li><a href="projects.html" class="block text-gold">Work</a></li>
-        <li><a href="index.html#about" @click="mobileMenu=false" class="block">About</a></li>
-        <li><a href="index.html#reviews" @click="mobileMenu=false" class="block">Experience</a></li>
-        <li><a href="index.html#blog" @click="mobileMenu=false" class="block">Education</a></li>
-        <li><a href="index.html#contact" @click="mobileMenu=false" class="block">Contact</a></li>
-      </ul>
     </div>
-  </header>
 
-  <main class="relative z-10">
+  </nav>
 
-    <section class="relative pt-40 pb-16 overflow-hidden">
+  <div
+    x-show="mobileMenu"
+    x-cloak
+    x-transition
+    class="glass-nav max-w-6xl mx-auto mt-2 rounded-2xl md:hidden shadow-soft"
+  >
+    <ul class="px-6 py-5 flex flex-col gap-4 text-sm font-medium">
+      <li><a href="index.html#services" @click="mobileMenu=false" class="block">Skills</a></li>
+      <li><a href="projects.html" class="block text-gold">Work</a></li>
+      <li><a href="index.html#about" @click="mobileMenu=false" class="block">About</a></li>
+      <li><a href="index.html#reviews" @click="mobileMenu=false" class="block">Experience</a></li>
+      <li><a href="index.html#blog" @click="mobileMenu=false" class="block">Education</a></li>
+      <li><a href="index.html#contact" @click="mobileMenu=false" class="block">Contact</a></li>
+    </ul>
+  </div>
 
-      <div class="absolute -top-24 right-0 w-[420px] h-[420px] rounded-full bg-gold/10 blur-3xl pointer-events-none"></div>
-      <div class="absolute top-32 -left-24 w-80 h-80 rounded-full bg-forest/10 dark:bg-gold/5 blur-3xl pointer-events-none"></div>
+</header>
 
-      <div class="max-w-6xl mx-auto px-6 relative z-10">
+<main class="relative z-10">
 
-        <div class="max-w-3xl">
+<section class="relative pt-40 pb-16 overflow-hidden">
 
-          <div class="reveal inline-flex items-center gap-2 rounded-full border border-gold/25 bg-white/50 dark:bg-white/5 px-4 py-2 mb-6">
-            <span class="w-2 h-2 rounded-full bg-gold"></span>
-            <span class="text-xs font-semibold tracking-[0.18em] uppercase text-forest/70 dark:text-[#F4EFE6]/70">
-              Selected Engineering Work
-            </span>
-          </div>
+  <div class="absolute -top-24 right-0 w-[420px] h-[420px] rounded-full bg-gold/10 blur-3xl pointer-events-none"></div>
+  <div class="absolute top-32 -left-24 w-80 h-80 rounded-full bg-forest/10 dark:bg-gold/5 blur-3xl pointer-events-none"></div>
 
-          <h1 class="reveal d1 font-display font-bold text-5xl md:text-7xl leading-[.98] text-forest dark:text-[#F4EFE6] mb-6">
-            Projects built at the intersection of
-            <span class="text-gold">AI and software</span>.
-          </h1>
+  <div class="max-w-6xl mx-auto px-6 relative z-10">
 
-          <p class="reveal d2 text-lg md:text-xl leading-relaxed text-forest/65 dark:text-[#F4EFE6]/65 max-w-2xl">
-            A collection of AI applications, automation systems, machine-learning tools,
-            computer-vision projects, and full-stack products designed to solve practical problems.
-          </p>
+    <div class="max-w-3xl">
 
-        </div>
+      <div class="reveal inline-flex items-center gap-2 rounded-full border border-gold/25 bg-white/50 dark:bg-white/5 px-4 py-2 mb-6">
+        <span class="w-2 h-2 rounded-full bg-gold"></span>
 
-        <div class="reveal d3 mt-10 flex flex-wrap items-center gap-3">
-
-          <template x-for="option in filterOptions" :key="option.value">
-
-            <button
-              @click="filter = option.value"
-              class="filter-pill rounded-full border px-4 py-2 text-sm font-medium"
-              :class="filter === option.value
-                ? 'bg-forest text-white border-forest dark:bg-gold dark:text-[#142019] dark:border-gold shadow-card'
-                : 'bg-white/60 dark:bg-white/5 text-forest/70 dark:text-[#F4EFE6]/70 border-gold/20 hover:border-gold hover:text-forest dark:hover:text-white'"
-              x-text="option.label"
-            >
-            </button>
-
-          </template>
-
-        </div>
-
+        <span class="text-xs font-semibold tracking-[0.18em] uppercase text-forest/70 dark:text-[#F4EFE6]/70">
+          Selected Engineering Work
+        </span>
       </div>
-    </section>
 
-    <section class="pb-24">
+      <h1 class="reveal d1 font-display font-bold text-5xl md:text-7xl leading-[.98] text-forest dark:text-[#F4EFE6] mb-6">
+        Projects built at the intersection of
+        <span class="text-gold">AI and software</span>.
+      </h1>
 
-      <div class="max-w-6xl mx-auto px-6">
+      <p class="reveal d2 text-lg md:text-xl leading-relaxed text-forest/65 dark:text-[#F4EFE6]/65 max-w-2xl">
+        A collection of AI applications, automation systems, machine-learning tools,
+        computer-vision projects, and full-stack products designed to solve practical problems.
+      </p>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+    </div>
 
-          <template x-for="project in filteredProjects" :key="project.id">
+    <div class="reveal d3 mt-10 flex flex-wrap items-center gap-3">
 
-            <article class="project-card reveal group rounded-[1.6rem] overflow-hidden bg-paper dark:bg-[#17211B] border border-gold/15 dark:border-gold/10">
+      <template x-for="option in filterOptions" :key="option.value">
 
-              <a :href="project.url" class="block image-wrap h-56 relative">
-
-                <img
-                  :src="project.img"
-                  :alt="project.title"
-                  loading="lazy"
-                />
-
-                <div class="absolute inset-0 bg-gradient-to-t from-[#112019]/45 via-transparent to-transparent"></div>
-
-                <div class="absolute top-4 left-4 flex flex-wrap gap-2">
-
-                  <span
-                    class="rounded-full bg-[#F9F5EC]/90 text-forest text-xs font-semibold px-3 py-1.5 backdrop-blur"
-                    x-text="project.categoryLabel"
-                  >
-                  </span>
-
-                  <span
-                    class="rounded-full px-3 py-1.5 text-xs font-semibold backdrop-blur"
-                    :class="project.status === 'Live'
-                      ? 'bg-emerald-100/90 text-emerald-800'
-                      : 'bg-amber-100/90 text-amber-800'"
-                    x-text="project.status"
-                  >
-                  </span>
-
-                </div>
-
-              </a>
-
-              <div class="p-7">
-
-                <div class="flex items-center justify-between gap-4 mb-4">
-
-                  <span
-                    class="text-xs uppercase tracking-[.18em] text-gold font-semibold"
-                    x-text="project.year"
-                  >
-                  </span>
-
-                  <span
-                    class="text-xs text-forest/45 dark:text-[#F4EFE6]/45"
-                    x-text="project.type"
-                  >
-                  </span>
-
-                </div>
-
-                <a :href="project.url">
-                  <h2
-                    class="font-display font-bold text-2xl leading-tight text-forest dark:text-[#F4EFE6] mb-3 group-hover:text-gold transition-colors"
-                    x-text="project.title"
-                  >
-                  </h2>
-                </a>
-
-                <p
-                  class="text-sm leading-7 text-forest/62 dark:text-[#F4EFE6]/62 mb-5"
-                  x-text="project.desc"
-                >
-                </p>
-
-                <div class="flex flex-wrap gap-2 mb-6">
-
-                  <template x-for="tag in project.tags" :key="tag">
-
-                    <span
-                      class="text-xs rounded-full bg-cream dark:bg-white/5 border border-gold/10 px-3 py-1.5 text-forest/65 dark:text-[#F4EFE6]/65"
-                      x-text="tag"
-                    >
-                    </span>
-
-                  </template>
-
-                </div>
-
-                <div class="flex items-center justify-between gap-4 pt-5 border-t border-gold/10">
-
-                  <a
-                    :href="project.url"
-                    class="nav-link inline-flex items-center gap-2 text-sm font-semibold text-forest dark:text-[#F4EFE6] hover:text-gold"
-                  >
-                    View project →
-                  </a>
-
-                  <a
-                    x-show="project.liveUrl"
-                    :href="project.liveUrl"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-xs font-semibold text-gold hover:text-gold-light"
-                  >
-                    Live demo ↗
-                  </a>
-
-                </div>
-
-              </div>
-
-            </article>
-
-          </template>
-
-        </div>
-
-        <div
-          x-show="filteredProjects.length === 0"
-          x-cloak
-          class="text-center py-24"
+        <button
+          @click="filter = option.value"
+          class="filter-pill rounded-full border px-4 py-2 text-sm font-medium"
+          :class="filter === option.value
+            ? 'bg-forest text-white border-forest dark:bg-gold dark:text-[#142019] dark:border-gold shadow-card'
+            : 'bg-white/60 dark:bg-white/5 text-forest/70 dark:text-[#F4EFE6]/70 border-gold/20 hover:border-gold hover:text-forest dark:hover:text-white'"
+          x-text="option.label"
         >
-          <p class="font-display text-3xl text-forest dark:text-[#F4EFE6] mb-2">
-            Nothing here yet.
-          </p>
+        </button>
 
-          <p class="text-sm text-forest/55 dark:text-[#F4EFE6]/55">
-            Try another project category.
-          </p>
-        </div>
+      </template>
 
-      </div>
-    </section>
+    </div>
 
-    <section class="pb-24">
+  </div>
 
-      <div class="max-w-6xl mx-auto px-6">
+</section>
 
-        <div class="relative overflow-hidden rounded-[2rem] bg-forest dark:bg-[#17211B] border border-gold/15 px-8 py-12 md:px-14 md:py-16 shadow-soft">
+<section class="pb-24">
 
-          <div class="absolute -top-24 -right-24 w-72 h-72 bg-gold/20 rounded-full blur-3xl"></div>
+  <div class="max-w-6xl mx-auto px-6">
 
-          <div class="relative z-10 grid md:grid-cols-[1fr_auto] gap-8 items-center">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
 
-            <div>
+      <template x-for="project in filteredProjects" :key="project.id">
 
-              <p class="text-xs uppercase tracking-[.2em] text-gold mb-4 font-semibold">
-                Open to opportunities
-              </p>
+        <article class="project-card reveal group rounded-[1.6rem] overflow-hidden bg-paper dark:bg-[#17211B] border border-gold/15 dark:border-gold/10">
 
-              <h2 class="font-display font-bold text-4xl md:text-5xl text-white leading-tight mb-4">
-                Have a role or project in mind?
-              </h2>
+          <a :href="project.url" class="block image-wrap h-56 relative">
 
-              <p class="text-white/65 max-w-2xl leading-relaxed">
-                I am open to AI/ML, automation, backend, full-stack software engineering,
-                and internship opportunities.
-              </p>
+            <img
+              :src="project.img"
+              :alt="project.title"
+              loading="lazy"
+            />
+
+            <div class="absolute inset-0 bg-gradient-to-t from-[#112019]/45 via-transparent to-transparent"></div>
+
+            <div class="absolute top-4 left-4 flex flex-wrap gap-2">
+
+              <span
+                class="rounded-full bg-[#F9F5EC]/90 text-forest text-xs font-semibold px-3 py-1.5 backdrop-blur"
+                x-text="project.categoryLabel"
+              >
+              </span>
+
+              <span
+                class="rounded-full px-3 py-1.5 text-xs font-semibold backdrop-blur"
+                :class="project.status === 'Live'
+                  ? 'bg-emerald-100/90 text-emerald-800'
+                  : 'bg-amber-100/90 text-amber-800'"
+                x-text="project.status"
+              >
+              </span>
 
             </div>
 
-            <a
-              href="index.html#contact"
-              class="shine inline-flex items-center justify-center rounded-full bg-gold text-[#132019] px-7 py-3.5 font-semibold hover:bg-gold-light transition-colors whitespace-nowrap"
-            >
-              Start a conversation →
+          </a>
+
+          <div class="p-7">
+
+            <div class="flex items-center justify-between gap-4 mb-4">
+
+              <span
+                class="text-xs uppercase tracking-[.18em] text-gold font-semibold"
+                x-text="project.year"
+              >
+              </span>
+
+              <span
+                class="text-xs text-forest/45 dark:text-[#F4EFE6]/45"
+                x-text="project.type"
+              >
+              </span>
+
+            </div>
+
+            <a :href="project.url">
+
+              <h2
+                class="font-display font-bold text-2xl leading-tight text-forest dark:text-[#F4EFE6] mb-3 group-hover:text-gold transition-colors"
+                x-text="project.title"
+              >
+              </h2>
+
             </a>
+
+            <p
+              class="text-sm leading-7 text-forest/62 dark:text-[#F4EFE6]/62 mb-5"
+              x-text="project.desc"
+            >
+            </p>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+
+              <template x-for="tag in project.tags" :key="tag">
+
+                <span
+                  class="text-xs rounded-full bg-cream dark:bg-white/5 border border-gold/10 px-3 py-1.5 text-forest/65 dark:text-[#F4EFE6]/65"
+                  x-text="tag"
+                >
+                </span>
+
+              </template>
+
+            </div>
+
+            <div class="flex items-center justify-between gap-4 pt-5 border-t border-gold/10">
+
+              <a
+                :href="project.url"
+                class="nav-link inline-flex items-center gap-2 text-sm font-semibold text-forest dark:text-[#F4EFE6] hover:text-gold"
+              >
+                View project →
+              </a>
+
+              <a
+                x-show="project.liveUrl"
+                :href="project.liveUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-xs font-semibold text-gold hover:text-gold-light"
+              >
+                Live demo ↗
+              </a>
+
+            </div>
 
           </div>
 
-        </div>
+        </article>
 
-      </div>
-    </section>
+      </template>
 
-  </main>
+    </div>
 
-  <footer class="relative z-10 border-t border-gold/10">
+    <div
+      x-show="filteredProjects.length === 0"
+      x-cloak
+      class="text-center py-24"
+    >
 
-    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-
-      <p class="text-sm text-forest/50 dark:text-[#F4EFE6]/50">
-        © <span id="year"></span> Ayush Bambhroliya. All rights reserved.
+      <p class="font-display text-3xl text-forest dark:text-[#F4EFE6] mb-2">
+        Nothing here yet.
       </p>
 
-      <p class="text-xs text-forest/45 dark:text-[#F4EFE6]/45">
-        Designed and built by Ayush Bambhroliya
+      <p class="text-sm text-forest/55 dark:text-[#F4EFE6]/55">
+        Try another project category.
       </p>
 
     </div>
 
-  </footer>
+  </div>
 
-  <script>
+</section>
 
-    function projectsPage() {
+<section class="pb-24">
 
-      return {
+  <div class="max-w-6xl mx-auto px-6">
 
-        dark: false,
-        mobileMenu: false,
-        filter: 'all',
+    <div class="relative overflow-hidden rounded-[2rem] bg-forest dark:bg-[#17211B] border border-gold/15 px-8 py-12 md:px-14 md:py-16 shadow-soft">
 
-        filterOptions: [
-          { value: 'all', label: 'All (8)' },
-          { value: 'automation', label: 'AI Automation' },
-          { value: 'ai-apps', label: 'AI Apps' },
-          { value: 'vision', label: 'Computer Vision' },
-          { value: 'ml-data', label: 'ML / Data' }
-        ],
+      <div class="absolute -top-24 -right-24 w-72 h-72 bg-gold/20 rounded-full blur-3xl"></div>
 
-        allProjects: [
+      <div class="relative z-10 grid md:grid-cols-[1fr_auto] gap-8 items-center">
 
-          {
-            id: 8,
-            title: 'CommonGround',
-            category: 'ai-apps',
-            categoryLabel: 'AI Apps',
-            type: 'AI Recommendation System',
-            tags: ['Next.js', 'FastAPI', 'OpenAI', 'TMDB'],
-            year: '2026',
-            status: 'Case Study',
-            desc: 'A full-stack AI group entertainment recommendation platform that interprets natural-language preferences, protects genuine deal-breakers, and ranks the strongest movie or TV choice for the group as a whole.',
-            img: 'commonground-screenshot.png',
-            url: 'commonground.html',
-            liveUrl: ''
-          },
+        <div>
 
-          {
-            id: 1,
-            title: 'Maps: Goal Planner',
-            category: 'ai-apps',
-            categoryLabel: 'AI Apps',
-            type: 'Full-Stack AI',
-            tags: ['Next.js', 'FastAPI', 'OpenAI', 'Leaflet'],
-            year: '2026',
-            status: 'Case Study',
-            desc: 'An AI-powered route planner that transforms natural-language goals into ranked destinations, optimized multi-stop routes, interactive maps, and trip timelines.',
-            img: 'maps-goal-planner-screenshot.png',
-            url: 'maps-goal-planner.html',
-            liveUrl: 'https://maps-goal-planner-rjzi-doibbtpo8-ayushs-projects-f5ec9f23.vercel.app/'
-          },
+          <p class="text-xs uppercase tracking-[.2em] text-gold mb-4 font-semibold">
+            Open to opportunities
+          </p>
 
-          {
-            id: 2,
-            title: 'AgentFlow',
-            category: 'automation',
-            categoryLabel: 'AI Automation',
-            type: 'Multi-Agent System',
-            tags: ['Python', 'LangGraph', 'OpenAI API', 'Streamlit'],
-            year: '2025',
-            status: 'Live',
-            desc: 'A lightweight multi-agent AI task runner where specialized agents collaborate on planning, research, execution, and validation through an orchestrated workflow.',
-            img: 'agentflow-screenshot.png',
-            url: 'multi-agent-task-runner.html',
-            liveUrl: 'https://agentflow-jyzejsrsrgqcqmzwh5q4jj.streamlit.app/'
-          },
+          <h2 class="font-display font-bold text-4xl md:text-5xl text-white leading-tight mb-4">
+            Have a role or project in mind?
+          </h2>
 
-          {
-            id: 3,
-            title: 'ApplyBuddy-AI',
-            category: 'ai-apps',
-            categoryLabel: 'AI Apps',
-            type: 'Career AI Tool',
-            tags: ['Python', 'Streamlit', 'OpenAI API', 'PyPDF'],
-            year: '2025',
-            status: 'Live',
-            desc: 'An AI-powered job application assistant that generates tailored resumes, cover letters, recruiter emails, LinkedIn outreach, and interview-preparation materials.',
-            img: 'applybuddy-ai-screenshot.png',
-            url: 'applybuddy-ai.html',
-            liveUrl: 'https://applybuddy-ai-ajvybt6ddrjht5mkn5mtrz.streamlit.app/#apply-buddy-ai'
-          },
+          <p class="text-white/65 max-w-2xl leading-relaxed">
+            I am open to AI/ML, automation, backend, full-stack software engineering,
+            and internship opportunities.
+          </p>
 
-          {
-            id: 4,
-            title: 'Resume-Meets-Job',
-            category: 'ai-apps',
-            categoryLabel: 'AI Apps',
-            type: 'Resume Analysis',
-            tags: ['Python', 'Streamlit', 'OpenAI API', 'Prompt Engineering'],
-            year: '2025',
-            status: 'Live',
-            desc: 'An AI resume-analysis agent that evaluates job fit, identifies skill gaps, generates tailored improvement strategies, and prepares interview and learning plans.',
-            img: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=1000&q=85',
-            url: 'resume-meets-job.html',
-            liveUrl: 'https://abambhroliya007-resume-meets-job-app-58ufpd.streamlit.app/'
-          },
+        </div>
 
-          {
-            id: 5,
-            title: 'AI Workflow Automation System',
-            category: 'automation',
-            categoryLabel: 'AI Automation',
-            type: 'Workflow Platform',
-            tags: ['n8n', 'Python', 'JavaScript', 'APIs'],
-            year: '2025',
-            status: 'Case Study',
-            desc: 'Reusable AI workflows that collect, validate, classify, summarize, and route information from multiple APIs and data sources using structured LLM outputs.',
-            img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1000&q=85',
-            url: 'ai-workflow-automation.html',
-            liveUrl: ''
-          },
+        <a
+          href="index.html#contact"
+          class="shine inline-flex items-center justify-center rounded-full bg-gold text-[#132019] px-7 py-3.5 font-semibold hover:bg-gold-light transition-colors whitespace-nowrap"
+        >
+          Start a conversation →
+        </a>
 
-          {
-            id: 6,
-            title: 'Golf Swing Analyzer',
-            category: 'vision',
-            categoryLabel: 'Computer Vision',
-            type: 'Sports Analytics',
-            tags: ['OpenCV', 'MediaPipe', 'FastAPI', 'React'],
-            year: '2025',
-            status: 'Case Study',
-            desc: 'A full-stack computer-vision application that analyzes golf-swing video and extracts biomechanical metrics such as tempo, rotation, posture, and stability.',
-            img: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1000&q=85',
-            url: 'golf-swing-analyzer.html',
-            liveUrl: ''
-          },
+      </div>
 
-          {
-            id: 7,
-            title: 'ML Stock Analysis Assistant',
-            category: 'ml-data',
-            categoryLabel: 'ML / Data',
-            type: 'Financial ML',
-            tags: ['Python', 'Pandas', 'scikit-learn', 'Streamlit'],
-            year: '2025',
-            status: 'Live',
-            desc: 'An interactive stock-analysis platform that processes financial data, applies machine-learning models, and turns model output into understandable investment research insights.',
-            img: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1000&q=85',
-            url: 'ml-stock-analysis-assistant.html',
-            liveUrl: 'https://ml-stock-assistant-5hu7gkpha2p6n52ayppwny.streamlit.app/'
-          }
+    </div>
 
-        ],
+  </div>
 
-        get filteredProjects() {
+</section>
 
-          if (this.filter === 'all') {
-            return this.allProjects;
-          }
+</main>
 
-          return this.allProjects.filter(
-            project => project.category === this.filter
+<footer class="relative z-10 border-t border-gold/10">
+
+  <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+
+    <p class="text-sm text-forest/50 dark:text-[#F4EFE6]/50">
+      © <span id="year"></span> Ayush Bambhroliya. All rights reserved.
+    </p>
+
+    <p class="text-xs text-forest/45 dark:text-[#F4EFE6]/45">
+      Designed and built by Ayush Bambhroliya
+    </p>
+
+  </div>
+
+</footer>
+
+<script>
+
+function projectsPage(){
+
+  return{
+
+    dark:false,
+    mobileMenu:false,
+    filter:'all',
+
+    filterOptions:[
+      {value:'all',label:'All (8)'},
+      {value:'automation',label:'AI Automation'},
+      {value:'ai-apps',label:'AI Apps'},
+      {value:'vision',label:'Computer Vision'},
+      {value:'ml-data',label:'ML / Data'}
+    ],
+
+    allProjects:[
+
+      {
+        id:8,
+        title:'CommonGround',
+        category:'ai-apps',
+        categoryLabel:'AI Apps',
+        type:'AI Recommendation System',
+        tags:['Next.js','FastAPI','OpenAI','TMDB'],
+        year:'2026',
+        status:'Live',
+        desc:'A full-stack AI group entertainment recommendation platform that interprets natural-language preferences, protects genuine deal-breakers, and ranks the strongest movie or TV choice for the group as a whole.',
+        img:'commonground-screenshot.png',
+        url:'commonground.html',
+        liveUrl:'https://commonground-tau.vercel.app/'
+      },
+
+      {
+        id:1,
+        title:'Maps: Goal Planner',
+        category:'ai-apps',
+        categoryLabel:'AI Apps',
+        type:'Full-Stack AI',
+        tags:['Next.js','FastAPI','OpenAI','Leaflet'],
+        year:'2026',
+        status:'Live',
+        desc:'An AI-powered route planner that transforms natural-language goals into ranked destinations, optimized multi-stop routes, interactive maps, and trip timelines.',
+        img:'maps-goal-planner-screenshot.png',
+        url:'maps-goal-planner.html',
+        liveUrl:'https://maps-goal-planner-rjzi-doibbtpo8-ayushs-projects-f5ec9f23.vercel.app/'
+      },
+
+      {
+        id:2,
+        title:'AgentFlow',
+        category:'automation',
+        categoryLabel:'AI Automation',
+        type:'Multi-Agent System',
+        tags:['Python','LangGraph','OpenAI API','Streamlit'],
+        year:'2025',
+        status:'Live',
+        desc:'A lightweight multi-agent AI task runner where specialized agents collaborate on planning, research, execution, and validation through an orchestrated workflow.',
+        img:'agentflow-screenshot.png',
+        url:'multi-agent-task-runner.html',
+        liveUrl:'https://agentflow-jyzejsrsrgqcqmzwh5q4jj.streamlit.app/'
+      },
+
+      {
+        id:3,
+        title:'ApplyBuddy-AI',
+        category:'ai-apps',
+        categoryLabel:'AI Apps',
+        type:'Career AI Tool',
+        tags:['Python','Streamlit','OpenAI API','PyPDF'],
+        year:'2025',
+        status:'Live',
+        desc:'An AI-powered job application assistant that generates tailored resumes, cover letters, recruiter emails, LinkedIn outreach, and interview-preparation materials.',
+        img:'applybuddy-ai-screenshot.png',
+        url:'applybuddy-ai.html',
+        liveUrl:'https://applybuddy-ai-ajvybt6ddrjht5mkn5mtrz.streamlit.app/#apply-buddy-ai'
+      },
+
+      {
+        id:4,
+        title:'Resume-Meets-Job',
+        category:'ai-apps',
+        categoryLabel:'AI Apps',
+        type:'Resume Analysis',
+        tags:['Python','Streamlit','OpenAI API','Prompt Engineering'],
+        year:'2025',
+        status:'Live',
+        desc:'An AI resume-analysis agent that evaluates job fit, identifies skill gaps, generates tailored improvement strategies, and prepares interview and learning plans.',
+        img:'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=1000&q=85',
+        url:'resume-meets-job.html',
+        liveUrl:'https://abambhroliya007-resume-meets-job-app-58ufpd.streamlit.app/'
+      },
+
+      {
+        id:5,
+        title:'AI Workflow Automation System',
+        category:'automation',
+        categoryLabel:'AI Automation',
+        type:'Workflow Platform',
+        tags:['n8n','Python','JavaScript','APIs'],
+        year:'2025',
+        status:'Case Study',
+        desc:'Reusable AI workflows that collect, validate, classify, summarize, and route information from multiple APIs and data sources using structured LLM outputs.',
+        img:'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1000&q=85',
+        url:'ai-workflow-automation.html',
+        liveUrl:''
+      },
+
+      {
+        id:6,
+        title:'Golf Swing Analyzer',
+        category:'vision',
+        categoryLabel:'Computer Vision',
+        type:'Sports Analytics',
+        tags:['OpenCV','MediaPipe','FastAPI','React'],
+        year:'2025',
+        status:'Case Study',
+        desc:'A full-stack computer-vision application that analyzes golf-swing video and extracts biomechanical metrics such as tempo, rotation, posture, and stability.',
+        img:'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1000&q=85',
+        url:'golf-swing-analyzer.html',
+        liveUrl:''
+      },
+
+      {
+        id:7,
+        title:'ML Stock Analysis Assistant',
+        category:'ml-data',
+        categoryLabel:'ML / Data',
+        type:'Financial ML',
+        tags:['Python','Pandas','scikit-learn','Streamlit'],
+        year:'2025',
+        status:'Live',
+        desc:'An interactive stock-analysis platform that processes financial data, applies machine-learning models, and turns model output into understandable investment research insights.',
+        img:'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1000&q=85',
+        url:'ml-stock-analysis-assistant.html',
+        liveUrl:'https://ml-stock-assistant-5hu7gkpha2p6n52ayppwny.streamlit.app/'
+      }
+
+    ],
+
+    get filteredProjects(){
+
+      if(this.filter==='all'){
+        return this.allProjects;
+      }
+
+      return this.allProjects.filter(
+        project=>project.category===this.filter
+      );
+
+    },
+
+    init(){
+
+      this.dark=
+        localStorage.getItem('theme')==='dark' ||
+        (
+          !localStorage.getItem('theme') &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches
+        );
+
+      this.$watch('dark',value=>{
+        localStorage.setItem(
+          'theme',
+          value?'dark':'light'
+        );
+      });
+
+      this.$nextTick(()=>{
+
+        const observer=
+          new IntersectionObserver(
+            entries=>{
+
+              entries.forEach(entry=>{
+
+                if(entry.isIntersecting){
+
+                  entry.target.classList.add('in');
+
+                  observer.unobserve(
+                    entry.target
+                  );
+
+                }
+
+              });
+
+            },
+            {
+              threshold:.08,
+              rootMargin:'0px 0px -30px 0px'
+            }
           );
 
-        },
+        document
+          .querySelectorAll('.reveal')
+          .forEach(
+            element=>observer.observe(element)
+          );
 
-        init() {
+      });
 
-          this.dark =
-            localStorage.getItem('theme') === 'dark' ||
-            (
-              !localStorage.getItem('theme') &&
-              window.matchMedia('(prefers-color-scheme: dark)').matches
-            );
-
-          this.$watch('dark', value => {
-            localStorage.setItem(
-              'theme',
-              value ? 'dark' : 'light'
-            );
-          });
-
-          this.$nextTick(() => {
-
-            const observer =
-              new IntersectionObserver(
-                entries => {
-
-                  entries.forEach(entry => {
-
-                    if (entry.isIntersecting) {
-
-                      entry.target.classList.add('in');
-
-                      observer.unobserve(
-                        entry.target
-                      );
-
-                    }
-
-                  });
-
-                },
-                {
-                  threshold: 0.08,
-                  rootMargin: '0px 0px -30px 0px'
-                }
-              );
-
-            document
-              .querySelectorAll('.reveal')
-              .forEach(
-                element =>
-                  observer.observe(element)
-              );
-
-          });
-
-          document.getElementById('year').textContent =
-            new Date().getFullYear();
-
-        }
-
-      };
+      document.getElementById('year').textContent=
+        new Date().getFullYear();
 
     }
 
-  </script>
+  };
 
-  <!-- Cloudflare Web Analytics -->
-  <script
-    defer
-    src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token":"f53237763bf641c59034679ae8616a53"}'>
-  </script>
-  <!-- End Cloudflare Web Analytics -->
+}
+
+</script>
+
+<!-- Cloudflare Web Analytics -->
+<script
+  defer
+  src="https://static.cloudflareinsights.com/beacon.min.js"
+  data-cf-beacon='{"token":"f53237763bf641c59034679ae8616a53"}'>
+</script>
+<!-- End Cloudflare Web Analytics -->
 
 </body>
 </html>
